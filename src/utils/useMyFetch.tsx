@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import React from "react";
 
 export const useMyFetch = (apiUrl: string, reqConfig: AxiosRequestConfig) => {
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState([]);
   const [url] = React.useState(apiUrl);
   const [config] = React.useState(reqConfig);
   const [error, setError] = React.useState(null);

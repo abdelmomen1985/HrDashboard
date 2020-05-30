@@ -4,12 +4,7 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { CtxtProvider } from "./Context";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <CtxtProvider />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDOM.render(<CtxtProvider />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
