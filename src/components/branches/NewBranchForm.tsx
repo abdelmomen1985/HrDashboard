@@ -11,6 +11,18 @@ import { Save } from "@material-ui/icons";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { LeafletMouseEvent, LocationEvent, LatLng } from "leaflet";
 import Axios from "axios";
+import LocateSVG from "../../assets/location_searching.svg";
+/*
+import MarkerIcon from "../../assets/pink_marker.svg";
+
+
+const markerIcon = new Icon({
+  iconUrl: MarkerIcon,
+  iconAnchor: [0, 50],
+  iconSize: [50, 50],
+});
+
+*/
 
 interface NewBranchFormProps {
   handleSave: () => void;
@@ -92,12 +104,18 @@ export default function NewBranchForm({ handleSave }: NewBranchFormProps) {
             />
             <Marker position={position}>
               <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
+                New Branch Location <br /> Easily customizable.
               </Popup>
             </Marker>
           </Map>
-          <span onClick={handleLocate}>Locate</span>
-          <span onClick={handleLocate}>جدة</span>
+          <img
+            src={LocateSVG}
+            alt=""
+            style={{ width: "30px" }}
+            onClick={handleLocate}
+          />
+
+          {/** <span onClick={handleLocate}>جدة</span> */}
         </div>
         <Box m={4}>
           <Button
@@ -106,7 +124,7 @@ export default function NewBranchForm({ handleSave }: NewBranchFormProps) {
             startIcon={<Save />}
             type="submit"
           >
-            Save
+            حفظ
           </Button>
         </Box>
       </form>

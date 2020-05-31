@@ -15,10 +15,15 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
+    color: "#fff",
   },
   title: {
     flexGrow: 1,
     textDecoration: "none",
+    color: "#fff",
+  },
+  btn: {
+    color: "#fff",
   },
 }));
 
@@ -53,16 +58,15 @@ export default function Header(props: any) {
           </IconButton>
           <Typography
             variant="h6"
-            color="inherit"
             className={classes.title}
             component={Link}
             to={"/"}
           >
-            Home
+            الرئيسية
           </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit" component={Link} to={"/demo"}>
-            Demo
+          <Button className={classes.btn}>تسجيل دخول</Button>
+          <Button component={Link} className={classes.btn} to={"/demo"}>
+            تجريبي
           </Button>
         </Toolbar>
       </AppBar>
@@ -79,9 +83,16 @@ export default function Header(props: any) {
             history.push("/branches");
           }}
         >
-          Branches
+          الفروع
         </MenuItem>
-        <MenuItem onClick={handleClose}>Admin Area</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            history.push("/employees");
+          }}
+        >
+          الموظفين
+        </MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>

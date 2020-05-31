@@ -50,7 +50,7 @@ export default function AddBranchModal(props: AddBranchModalProps) {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Add new Branch </h2>
+            <h2 id="transition-modal-title">اضافة فرع جديد </h2>
             <Box width={1}>
               <NewBranchForm
                 handleSave={() => {

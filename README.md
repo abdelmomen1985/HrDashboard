@@ -15,3 +15,21 @@
 ## To Add Electron
 
 ## To Add ui
+
+## Adding react-leaflet
+
+- install leaflet and react-leaflet
+- Add Leaflet CSS https://leafletjs.com/examples/quick-start/
+- configure map container div css (Width and height)
+- https://www.youtube.com/watch?v=DZfvr2zguHo
+
+## Todos Later
+
+## Learned tips
+
+- Use refs to focus on input https://medium.com/javascript-in-plain-english/react-refs-both-class-and-functional-components-76b7bce487b8
+-
+
+### add a search box on a leaflet map
+
+- https://stackoverflow.com/questions/37189484/how-to-add-a-search-box-on-a-leaflet-map

@@ -2,22 +2,54 @@ import React from "react";
 import "./App.css";
 import { HashRouter as Router, Route } from "react-router-dom";
 import Home from "./views/Home";
-import { Box } from "@material-ui/core";
+import { Box, ThemeProvider, createMuiTheme } from "@material-ui/core";
 import Demo from "./views/Demo";
 import Header from "./components/layouts/Header";
 import Branches from "./views/Branches";
+import { create } from "jss";
+import rtl from "jss-rtl";
+import { StylesProvider, jssPreset } from "@material-ui/core/styles";
+import Employees from "./views/Employees";
+
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+
+const theme = createMuiTheme({
+  direction: "rtl",
+  palette: {
+    primary: {
+      main: "#54BDB0",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#F2547A",
+      contrastText: "#fff",
+    },
+    error: {
+      main: "#f50057",
+    },
+    text: {
+      /*primary: "#ffffff",*/
+    },
+  },
+});
 
 function App() {
   return (
     <div className="App">
-      <Box height="100%">
-        <Router>
-          <Header />
-          <Route path="/" exact component={Home} />
-          <Route path="/demo" component={Demo} />
-          <Route path="/branches" component={Branches} />
-        </Router>
-      </Box>
+      <StylesProvider jss={jss}>
+        <ThemeProvider theme={theme}>
+          <Box height="100%">
+            <Router>
+              <Header />
+              <Route path="/" exact component={Home} />
+              <Route path="/demo" component={Demo} />
+              <Route path="/branches" component={Branches} />
+              <Route path="/employees" component={Employees} />
+            </Router>
+          </Box>
+        </ThemeProvider>
+      </StylesProvider>
     </div>
   );
 }
