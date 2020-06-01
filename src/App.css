@@ -3,3 +3,8 @@
   min-width: 400px;
   height: 300px;
 }
+
+.hovered-dashtext {
+  font-size: 1.1rem !important;
+  transition: font-size 0.5s;
+}

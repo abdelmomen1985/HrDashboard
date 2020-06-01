@@ -1,6 +1,6 @@
 {
   "name": "hrdashboard",
-  "homepage": "http://13.90.214.197:8081/hrdashboard/",
+  "homepage": "http://13.90.214.197:8081/hrboard/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
