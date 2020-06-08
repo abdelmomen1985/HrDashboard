@@ -48,7 +48,7 @@ export default function NewBranchForm({ handleSave }: NewBranchFormProps) {
       console.log(branchName, position);
       // Now Add Branch
       const { status } = await Axios.post(
-        "http://13.90.214.197:8000/api/Company/AddBranch",
+        process.env.REACT_APP_API_URL + "Company/AddBranch",
         {
           company_id: 1,
           ar_name: branchName,

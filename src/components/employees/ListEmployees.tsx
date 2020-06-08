@@ -22,7 +22,7 @@ export default function ListEmployees() {
   const { status, data, error } = useQuery(
     "GetEmployees",
     async () =>
-      await GetEmployees("http://13.90.214.197:8000/api/Employees", {})
+      await GetEmployees(process.env.REACT_APP_API_URL + "Employees", {})
   );
 
   if (status === "loading") return <div>Loading ...</div>;

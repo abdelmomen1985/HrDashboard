@@ -33,7 +33,7 @@ export default function Branches() {
 
   /*
   const { loading, data } = useMyFetch(
-    "http://13.90.214.197:8000/api/Company/Branches?company_id=1",
+    process.env.REACT_APP_API_URL + "Company/Branches?company_id=1",
     {}
   );
   */
@@ -42,7 +42,7 @@ export default function Branches() {
     "GetBranches",
     async () =>
       await GetBranches(
-        "http://13.90.214.197:8000/api/Company/Branches?company_id=1",
+        process.env.REACT_APP_API_URL + "Company/Branches?company_id=1",
         {}
       )
   );
@@ -50,7 +50,7 @@ export default function Branches() {
   const [mutate, { status: custStatus }] = useMutation(
     async (id: string) =>
       await DeleteBranch(
-        `http://13.90.214.197:8000/api/Company/Branch/${id}`,
+        `${process.env.REACT_APP_API_URL}Company/Branch/${id}`,
         {}
       )
   );

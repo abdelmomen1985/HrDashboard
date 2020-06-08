@@ -38,7 +38,7 @@ export default function Demo() {
           console.log("data");
         }}
       >
-        OK
+        OK {process.env.REACT_APP_TEST}
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
