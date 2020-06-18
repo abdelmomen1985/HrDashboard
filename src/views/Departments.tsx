@@ -14,8 +14,10 @@ import { Edit, Delete } from "@material-ui/icons";
 import { GetDepartments, DeleteDepartment } from '../queries/Departments';
 
 // UI Components
-import AddDepartmentModal from '../components/departments/AddDepartmentModal';
+import NewDepartmentForm from '../components/departments/NewDepartmentForm'
+import EditDepartmentForm from '../components/departments/EditDepartmentForm';
 import DeleteDialog from '../components/utils/DeleteDialog';
+import Modal from '../components/utils/Modal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,8 +34,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Departments() {
     const classes = useStyles();
     const [createModal, openCreateModal] = useState(false);
+    const [editModal, openEditModal] = useState(false);
     const [deleteDialog, openDeleteDialog] = useState(false);
-    const [departmentToDelete, setDepartmentToDelete] = useState({} as any);
+    const [selectedDepartment, setSelectedDepartment] = useState({} as any);
 
 
     // Fetch departments list
@@ -41,21 +44,21 @@ export default function Departments() {
     const [mutate, { status: mutateStatus }] = DeleteDepartment();
 
     const onDeleteClick = (department: any) => {
-        setDepartmentToDelete(department);
+        setSelectedDepartment(department);
         openDeleteDialog(true);
     }
 
-    // Close Dialog
-    const handleClose = () => {
-        openDeleteDialog(false);
-    };
+    const onEditClick = (department: any) => {
+        setSelectedDepartment(department);
+        openEditModal(true)
+    }
 
     // Delete Department
     const handleDelete = async () => {
 
         // Delete Branch Mutation
-        mutate(departmentToDelete.id).then(async () => {
-            setDepartmentToDelete({} as any);
+        mutate(selectedDepartment.id).then(async () => {
+            setSelectedDepartment({} as any);
             await refetch();
         })
 
@@ -77,16 +80,14 @@ export default function Departments() {
                     <ListItem button key={index}>
                         <ListItemText primary={department.ar_name} />
 
-                        <IconButton color="primary" aria-label="add ">
+                        <IconButton color="primary" aria-label="edit" onClick={() => onEditClick(department)}>
                             <Edit />
                         </IconButton>
 
                         <IconButton
                             color="primary"
-                            aria-label="delete "
-                            onClick={() => {
-                                onDeleteClick(department);
-                            }}>
+                            aria-label="delete"
+                            onClick={() => onDeleteClick(department)}>
                             <Delete className={classes.button} />
                         </IconButton>
 
@@ -94,24 +95,22 @@ export default function Departments() {
                 ))}
             </List>
 
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                    openCreateModal(true);
-                }}>
+            <Button variant="contained" color="primary" onClick={() => openCreateModal(true) }>
                 اضافة قسم جديد
             </Button>
 
-            <AddDepartmentModal
-                open={createModal}
-                handleClose={() => {
-                    openCreateModal(false);
-                    refetch();
-                }} />
+            {/* New Department Modal */}
+            <Modal open={createModal} handleClose={() => { openEditModal(false); refetch(); }}>
+                <NewDepartmentForm handleSave={() => { openCreateModal(false); refetch() }} />
+            </Modal>
+
+            {/* Edit Department Modal */}
+            <Modal open={editModal} handleClose={() => { openEditModal(false); refetch(); }}>
+                <EditDepartmentForm handleSave={() => { openEditModal(false); refetch() }} department={selectedDepartment} />
+            </Modal>
 
             {/* Delete Branch Dialog */}
-            <DeleteDialog open={deleteDialog} handleClose={handleClose} handleDelete={handleDelete} />
+            <DeleteDialog open={deleteDialog} handleClose={() => openDeleteDialog(false)} handleDelete={handleDelete} />
         </Box>
     )
 };

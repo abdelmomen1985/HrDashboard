@@ -6,7 +6,7 @@ const url = process.env.REACT_APP_API_URL;
 
 const GetEmployees = () => {
   return useQuery("GetEmployees", async () => {
-    return await Get(url + 'employees', {})
+    return await Get(url + '/employees', {})
   })
 }
 

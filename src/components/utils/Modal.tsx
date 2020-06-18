@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Modal, makeStyles, Fade, Backdrop, Box } from "@material-ui/core";
-import NewDepartmentForm from "./NewDepartmentForm";
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -16,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-interface AddDepartmentModalProps {
+interface Modal {
     open: boolean;
     handleClose: (arg0: boolean) => void;
+    children: React.ReactNode
 };
 
-export default function AddDepartmentModal(props: AddDepartmentModalProps) {
+export default function AddDepartmentModal(props: Modal) {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(props.open);
@@ -54,11 +54,7 @@ export default function AddDepartmentModal(props: AddDepartmentModalProps) {
                     <div className={classes.paper}>
                         <h2 id="transition-modal-title">اضافة قسم جديد </h2>
                         <Box width={1}>
-                            <NewDepartmentForm
-                                handleSave={() => {
-                                    handleClose();
-                                }}
-                            />
+                          {props.children}
                         </Box>
                     </div>
                 </Fade>

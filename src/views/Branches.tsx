@@ -8,14 +8,16 @@ import {
   IconButton,
   makeStyles,
   LinearProgress,
-  
+
 } from "@material-ui/core";
 import { LocationOn, Delete, Edit } from "@material-ui/icons";
 import { DeleteBranch, GetBranches } from "../queries/Branches";
 
 // UI Components
-import AddBranchModal from "../components/branches/AddBranchModal";
 import DeleteDialog from '../components/utils/DeleteDialog';
+import Modal from '../components/utils/Modal';
+import NewBranchForm from '../components/branches/NewBranchForm';
+import EditBranchFrom from '../components/branches/EditBranchForm';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -29,18 +31,24 @@ export default function Branches() {
 
   // Component State
   const [createModal, openCreateModal] = useState(false);
+  const [editModal, openEditModal] = useState(false);
   const [deleteDialog, openDeleteDialog] = useState(false);
-  const [branchToDelete, setBranchToDelete] = useState({} as any);
+  const [selectedBranch, setSelectedBranch] = useState({} as any);
 
   // HTTP Requests
   const { status, data, error, refetch } = GetBranches();
-  const [mutate, {status: mutateStatus }] = DeleteBranch();
+  const [mutate, { status: mutateStatus }] = DeleteBranch();
 
   // Delete Branch Dialog
   const onDeleteClick = (branch: any) => {
-    setBranchToDelete(branch);
+    setSelectedBranch(branch);
     openDeleteDialog(true);
   };
+
+  const onEditClick = (branch: any) => {
+    setSelectedBranch(branch);
+    openEditModal(true);
+  }
 
   // Close Dialog
   const handleClose = () => {
@@ -51,8 +59,8 @@ export default function Branches() {
   const handleDelete = async () => {
 
     // Delete Branch Mutation
-    await mutate(branchToDelete.id);
-    setBranchToDelete({} as any);
+    await mutate(selectedBranch.id);
+    setSelectedBranch({} as any);
 
     // List refetch
     await refetch();
@@ -79,13 +87,13 @@ export default function Branches() {
                 <LocationOn color="secondary" />
                 <ListItemText primary={branch.ar_name} />
 
-                <IconButton color="primary" aria-label="add ">
+                <IconButton color="primary" aria-label="edit" onClick={() => onEditClick(branch)}>
                   <Edit />
                 </IconButton>
 
                 <IconButton
                   color="primary"
-                  aria-label="delete "
+                  aria-label="delete"
                   onClick={() => {
                     onDeleteClick(branch);
                   }}>
@@ -102,19 +110,19 @@ export default function Branches() {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => {
-            openCreateModal(true);
-          }}>
+          onClick={() => openCreateModal(true)}>
           اضافة فرع جديد
         </Button>
 
         {/* Create Branch Modal */}
-        <AddBranchModal
-          open={createModal}
-          handleClose={() => {
-            openCreateModal(false);
-            refetch();
-          }} />
+          <Modal open={createModal} handleClose={() => {openCreateModal(false); refetch()}}>
+            <NewBranchForm handleSave={() => {openCreateModal(false); refetch()}} />
+          </Modal>
+
+        {/* Edit Branch Modal */}
+        <Modal open={editModal} handleClose={() => {openEditModal(false); refetch()}}>
+          <EditBranchFrom handleSave={() => {openEditModal(false); refetch()}} branch={selectedBranch}/>
+        </Modal>
 
         {/* Delete Branch Dialog */}
         <DeleteDialog open={deleteDialog} handleClose={handleClose} handleDelete={handleDelete} />
