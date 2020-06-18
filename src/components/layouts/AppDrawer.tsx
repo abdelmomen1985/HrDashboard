@@ -33,32 +33,6 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
       <div className={classes.toolbar} />
       <Divider />
       <MenuList>
-        {/** 
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <Inbox /> : <Mail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-                <MenuItem
-          onClick={() => {
-            handleClose();
-            history.push("/branches");
-          }}
-        >
-          الفروع
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            handleClose();
-            history.push("/employees");
-          }}
-        >
-          الموظفين
-        </MenuItem>
-        */}
 
         <MenuItem button component={Link} to="" selected={"/" === pathname}>
           <ListItemIcon>
@@ -128,8 +102,8 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
         <MenuItem
           button
           component={Link}
-          to="employees"
-          selected={"/employees" === pathname}
+          to="requests"
+          selected={"/requests" === pathname}
         >
           <ListItemIcon>
             <Inbox />
@@ -146,17 +120,6 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
         </MenuItem>
       </MenuList>
       <Divider />
-
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <Inbox /> : <Mail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
 }

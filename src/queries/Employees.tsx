@@ -1,8 +1,13 @@
 import Axios, { AxiosRequestConfig } from "axios";
+import { Get } from './helpers';
+import { useQuery } from "react-query";
 
-const GetEmployees = async (url: string, config: AxiosRequestConfig) => {
-  const { data } = await Axios(url, config);
-  return data;
-};
+const url = process.env.REACT_APP_API_URL;
+
+const GetEmployees = () => {
+  return useQuery("GetEmployees", async () => {
+    return await Get(url + 'employees', {})
+  })
+}
 
 export { GetEmployees };
