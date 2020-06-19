@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import DashboardPaper from "../components/utils/DashboardPaper";
+import DashboardPaper from "../components/ui/DashboardPaper";
 
 // Images
 import BranchesSVG from "../assets/branches.svg";

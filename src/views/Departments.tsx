@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import {
     List,
-    ListItem,
-    ListItemText,
     Button,
     Box,
-    IconButton,
     makeStyles,
     LinearProgress
 } from "@material-ui/core";
 
-import { Edit, Delete } from "@material-ui/icons";
 import { GetDepartments, DeleteDepartment } from '../queries/Departments';
 
 // UI Components
 import NewDepartmentForm from '../components/departments/NewDepartmentForm'
 import EditDepartmentForm from '../components/departments/EditDepartmentForm';
-import DeleteDialog from '../components/utils/DeleteDialog';
-import Modal from '../components/utils/Modal';
+import DeleteDialog from '../components/ui/DeleteDialog';
+import Modal from '../components/ui/Modal';
+import ListItem from '../components/ui/ListItem';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -74,38 +71,28 @@ export default function Departments() {
                 <LinearProgress color="secondary" />
             )}
 
+            {/* Departments List */}
             <List>
                 {/* Response iteration */}
                 {data && data.map((department: any, index: any) => (
-                    <ListItem button key={index}>
-                        <ListItemText primary={department.ar_name} />
-
-                        <IconButton color="primary" aria-label="edit" onClick={() => onEditClick(department)}>
-                            <Edit />
-                        </IconButton>
-
-                        <IconButton
-                            color="primary"
-                            aria-label="delete"
-                            onClick={() => onDeleteClick(department)}>
-                            <Delete className={classes.button} />
-                        </IconButton>
-
-                    </ListItem>
+                    <ListItem item={department} key={index}
+                        onEditClick={() => onEditClick(department)}
+                        onDeleteClick={() => onDeleteClick(department)} />
                 ))}
             </List>
 
-            <Button variant="contained" color="primary" onClick={() => openCreateModal(true) }>
+            {/* New Department Button */}
+            <Button variant="contained" color="primary" onClick={() => openCreateModal(true)}>
                 اضافة قسم جديد
             </Button>
 
             {/* New Department Modal */}
-            <Modal open={createModal} handleClose={() => { openEditModal(false); refetch(); }}>
+            <Modal title={"اضافة قسم جديد"} open={createModal} handleClose={() => { openEditModal(false); refetch(); }}>
                 <NewDepartmentForm handleSave={() => { openCreateModal(false); refetch() }} />
             </Modal>
 
             {/* Edit Department Modal */}
-            <Modal open={editModal} handleClose={() => { openEditModal(false); refetch(); }}>
+            <Modal title={"تعديل القسم"} open={editModal} handleClose={() => { openEditModal(false); refetch(); }}>
                 <EditDepartmentForm handleSave={() => { openEditModal(false); refetch() }} department={selectedDepartment} />
             </Modal>
 

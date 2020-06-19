@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
 interface Modal {
     open: boolean;
     handleClose: (arg0: boolean) => void;
-    children: React.ReactNode
+    children: React.ReactNode;
+    title: string
 };
 
 export default function AddDepartmentModal(props: Modal) {
@@ -45,14 +46,11 @@ export default function AddDepartmentModal(props: Modal) {
                 onClose={handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
-                BackdropProps={{
-                    timeout: 500,
-                }}
-            >
+                BackdropProps={{ timeout: 500, }}>
 
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title">اضافة قسم جديد </h2>
+                        <h2 id="transition-modal-title">{props.title}</h2>
                         <Box width={1}>
                           {props.children}
                         </Box>

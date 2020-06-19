@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   List,
-  ListItem,
-  ListItemText,
   Button,
   Box,
-  IconButton,
   makeStyles,
   LinearProgress,
 
 } from "@material-ui/core";
-import { LocationOn, Delete, Edit } from "@material-ui/icons";
+import { LocationOn } from "@material-ui/icons";
 import { DeleteBranch, GetBranches } from "../queries/Branches";
 
 // UI Components
-import DeleteDialog from '../components/utils/DeleteDialog';
-import Modal from '../components/utils/Modal';
+import ListItem from '../components/ui/ListItem';
+import DeleteDialog from '../components/ui/DeleteDialog';
+import Modal from '../components/ui/Modal';
 import NewBranchForm from '../components/branches/NewBranchForm';
 import EditBranchFrom from '../components/branches/EditBranchForm';
 
@@ -45,6 +43,7 @@ export default function Branches() {
     openDeleteDialog(true);
   };
 
+  // Edit Branch Modal
   const onEditClick = (branch: any) => {
     setSelectedBranch(branch);
     openEditModal(true);
@@ -83,24 +82,10 @@ export default function Branches() {
         <List>
           {data &&
             data.map((branch: any, index: any) => (
-              <ListItem button key={index}>
-                <LocationOn color="secondary" />
-                <ListItemText primary={branch.ar_name} />
-
-                <IconButton color="primary" aria-label="edit" onClick={() => onEditClick(branch)}>
-                  <Edit />
-                </IconButton>
-
-                <IconButton
-                  color="primary"
-                  aria-label="delete"
-                  onClick={() => {
-                    onDeleteClick(branch);
-                  }}>
-
-                  <Delete className={classes.button} />
-
-                </IconButton>
+              <ListItem item={branch} key={index}
+                onEditClick={() => onEditClick(branch)}
+                onDeleteClick={() => onDeleteClick(branch)}>
+                  <LocationOn style={{ marginLeft: 12 }} color="secondary" />
               </ListItem>
             ))}
         </List>
@@ -115,13 +100,13 @@ export default function Branches() {
         </Button>
 
         {/* Create Branch Modal */}
-          <Modal open={createModal} handleClose={() => {openCreateModal(false); refetch()}}>
-            <NewBranchForm handleSave={() => {openCreateModal(false); refetch()}} />
-          </Modal>
+        <Modal title={"اضافة فرع جديد"} open={createModal} handleClose={() => { openCreateModal(false); refetch() }}>
+          <NewBranchForm handleSave={() => { openCreateModal(false); refetch() }} />
+        </Modal>
 
         {/* Edit Branch Modal */}
-        <Modal open={editModal} handleClose={() => {openEditModal(false); refetch()}}>
-          <EditBranchFrom handleSave={() => {openEditModal(false); refetch()}} branch={selectedBranch}/>
+        <Modal title={"تعديل الفرع"} open={editModal} handleClose={() => { openEditModal(false); refetch() }}>
+          <EditBranchFrom handleSave={() => { openEditModal(false); refetch() }} branch={selectedBranch} />
         </Modal>
 
         {/* Delete Branch Dialog */}

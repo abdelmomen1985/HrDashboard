@@ -1,18 +1,10 @@
 import React, { useEffect } from "react";
-import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import {
-  useTheme,
-} from "@material-ui/core/styles";
+import {useTheme} from "@material-ui/core/styles";
 import AppDrawer from "./AppDrawer";
-import { withRouter, RouteComponentProps, Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import Header from './Header';
 
 // Component Styles
@@ -30,7 +22,7 @@ function MainLayout(props: Props) {
     children,
     location: { pathname },
   } = props;
-  
+
   const classes = MainStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
