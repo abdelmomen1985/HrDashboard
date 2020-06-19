@@ -47,9 +47,6 @@ function App() {
           <Box height="100%">
             <Router>
               <MainLayout>
-                {/** 
-                <Header />
-                */}
                 <Route path="/" exact component={Home} />
                 <Route path="/demo" component={Demo} />
                 <Route path="/branches" component={Branches} />

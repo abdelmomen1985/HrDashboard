@@ -8,93 +8,45 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Menu, MenuItem } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    color: "#fff",
-  },
-  title: {
-    flexGrow: 1,
-    textDecoration: "none",
-    color: "#fff",
-  },
-  btn: {
-    color: "#fff",
-  },
-}));
+// Component Styles
+import HeaderStyles from './styles/header-styles';
 
-export default function Header(props: any) {
-  const classes = useStyles();
-  let history = useHistory();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+// Navigation Bar Header
+function Header(props: any) {
+  const classes = HeaderStyles();
+  const pathname = props.location.pathname
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            className={classes.title}
-            component={Link}
-            to={"/"}
-          >
-            الرئيسية
-          </Typography>
-          <Button className={classes.btn}>تسجيل دخول</Button>
-          <Button component={Link} className={classes.btn} to={"/demo"}>
-            تجريبي
-          </Button>
-        </Toolbar>
-      </AppBar>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
+    <AppBar position="fixed" className={classes.appBar}>
+    <Toolbar>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        onClick={props.handleDrawerToggle}
+        className={classes.menuButton}
       >
-        <MenuItem
-          onClick={() => {
-            handleClose();
-            history.push("/branches");
-          }}
-        >
-          الفروع
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            handleClose();
-            history.push("/employees");
-          }}
-        >
-          الموظفين
-        </MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </Menu>
-    </div>
+        <MenuIcon />
+      </IconButton>
+      <Typography
+        variant="h6"
+        noWrap
+        style={{ flexGrow: 1, fontFamily: "ElMessiri" }}>
+        {pathname && pathname === "/branches" && "الفروع"}
+        {pathname && pathname === "/departments" && "الفروع"}
+        {pathname && pathname === "/employees" && "الموظفين"}
+      </Typography>
+
+      <Button className={classes.button}>تسجيل دخول</Button>
+      <Button component={Link} className={classes.button} to={"/demo"}>
+        تجريبي
+      </Button>
+    </Toolbar>
+  </AppBar>
   );
 }
+
+export default withRouter(Header);

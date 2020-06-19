@@ -1,11 +1,6 @@
 import React from "react";
 import {
-  makeStyles,
-  Theme,
-  createStyles,
   Divider,
-  List,
-  ListItem,
   ListItemIcon,
   ListItemText,
   MenuItem,
@@ -13,20 +8,44 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Inbox, Mail, Person, LocationOn, Home } from "@material-ui/icons";
+import Department from '@material-ui/icons/BusinessCenter';
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    // necessary for content to be below app bar
-    toolbar: theme.mixins.toolbar,
-    listText: {
-      fontFamily: "ElMessiri",
-    },
-  })
-);
+// Component Styles
+import DrawerStyles from './styles/drawer-styles';
+
+
+interface DrawerItemProps {
+  children: React.ReactNode;
+  title: string,
+  link: string,
+  pathname: string
+}
+
+const DrawerItem = (props: DrawerItemProps) => {
+  const classes = DrawerStyles();
+
+  return (
+    <MenuItem
+    button
+    component={Link}
+    to={props.link}
+    selected={`/${props.link}` === props.pathname}
+  >
+    <ListItemIcon>
+      {props.children}
+    </ListItemIcon>
+    <ListItemText
+      disableTypography
+      primary={<Typography className={classes.listText}>{props.title}</Typography>}
+    />
+  </MenuItem>
+  )
+}
 
 function AppDrawer({ location: { pathname } }: RouteComponentProps) {
-  const classes = useStyles();
+  const classes = DrawerStyles();
+
   console.log(pathname);
   return (
     <div>
@@ -34,90 +53,12 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
       <Divider />
       <MenuList>
 
-        <MenuItem button component={Link} to="" selected={"/" === pathname}>
-          <ListItemIcon>
-            <Home />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography className={classes.listText}> الرئيسية</Typography>
-            }
-          />
-        </MenuItem>
+        <DrawerItem link={""} title={"الرئيسية"} pathname={pathname}><Home /></DrawerItem>
+        <DrawerItem link={"branches"} title={"الفروع"} pathname={pathname}><LocationOn /></DrawerItem>
+        <DrawerItem link={"departments"} title ={"الاقسام"} pathname={pathname}><Department /></DrawerItem>
+        <DrawerItem link={"employees"} title={"الموظفين"} pathname={pathname}><Person /></DrawerItem>
+        <DrawerItem link={"requests"} title={"طلبات الاجازة"} pathname={pathname}><Inbox /></DrawerItem>
 
-        <MenuItem
-          button
-          component={Link}
-          to="branches"
-          selected={"/branches" === pathname}
-        >
-          <ListItemIcon>
-            <LocationOn />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography className={classes.listText}> الفروع</Typography>
-            }
-          />
-        </MenuItem>
-
-
-        <MenuItem
-          button
-          component={Link}
-          to="departments"
-          selected={"/departments" === pathname}
-        >
-          <ListItemIcon>
-            <LocationOn />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography className={classes.listText}> الاقسام</Typography>
-            }
-          />
-        </MenuItem>
-
-        <MenuItem
-          button
-          component={Link}
-          to="employees"
-          selected={"/employees" === pathname}
-        >
-          <ListItemIcon>
-            <Person />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography className={classes.listText}> الموظفين</Typography>
-            }
-          />
-        </MenuItem>
-
-        <Divider />
-        <MenuItem
-          button
-          component={Link}
-          to="requests"
-          selected={"/requests" === pathname}
-        >
-          <ListItemIcon>
-            <Inbox />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={
-              <Typography className={classes.listText}>
-                {" "}
-                طلبات الاجازة
-              </Typography>
-            }
-          />
-        </MenuItem>
       </MenuList>
       <Divider />
     </div>
