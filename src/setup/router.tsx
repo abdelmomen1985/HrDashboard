@@ -10,6 +10,7 @@ import Branches from "../views/Branches";
 import Departments from "../views/Departments";
 import EditEmployee from '../views/Employees/EditEmployee';
 import AddEmployee from '../views/Employees/AddEmployee';
+import Attendance from '../views/Attendance'
 
 export default function Routes() {
     return (
@@ -23,6 +24,7 @@ export default function Routes() {
                     <Route path="/employees/edit/:id" component={EditEmployee} />
                     <Route path="/employees" component={Employees} />
                     <Route path="/departments" component={Departments} />
+                    <Route path="/attendance" component={Attendance} />
                     <Route component={Home} />
                 </Switch>
             </MainLayout>

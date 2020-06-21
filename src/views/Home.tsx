@@ -41,14 +41,14 @@ export default function Home() {
           />
         </Grid>
         <Grid item xs={3}>
-          <DashboardPaper svg={InoutSVG} to={""} text={"الحضور والانصراف"} />
+          <DashboardPaper svg={InoutSVG} to={"/attendance"} text={"الحضور والانصراف"} />
         </Grid>
         <Grid item xs={3}>
           <DashboardPaper svg={VacationsSvg} to={""} text={" طلبات الاجازة"} />
         </Grid>
-        <Grid item xs={3}>
+        {/* <Grid item xs={3}>
           <DashboardPaper svg={ConversationsSvg} to={""} text={"  "} />
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );

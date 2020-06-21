@@ -47,6 +47,8 @@ export default function Departments() {
         openDeleteDialog(false);
     }
 
+    if (status === "loading") return <LinearProgress color="secondary" />;
+
     return (
         <Box component="div" m={2}>
 

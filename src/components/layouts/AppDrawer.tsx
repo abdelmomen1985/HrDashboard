@@ -7,7 +7,7 @@ import {
   MenuList,
   Typography,
 } from "@material-ui/core";
-import { Inbox, Mail, Person, LocationOn, Home } from "@material-ui/icons";
+import { Inbox, Mail, Person, LocationOn, Home, MeetingRoom } from "@material-ui/icons";
 import Department from '@material-ui/icons/BusinessCenter';
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 
@@ -57,6 +57,7 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
         <DrawerItem link={"/branches"} title={"الفروع"} pathname={pathname}><LocationOn /></DrawerItem>
         <DrawerItem link={"/departments"} title ={"الاقسام"} pathname={pathname}><Department /></DrawerItem>
         <DrawerItem link={"/employees"} title={"الموظفين"} pathname={pathname}><Person /></DrawerItem>
+        <DrawerItem link={"/attendance"} title={"الحضور و الانصراف"} pathname={pathname}><MeetingRoom /></DrawerItem>
         <DrawerItem link={"/requests"} title={"طلبات الاجازة"} pathname={pathname}><Inbox /></DrawerItem>
 
       </MenuList>

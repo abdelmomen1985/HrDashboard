@@ -23,6 +23,13 @@ const GetEmployee = (id: number) => {
   })
 }
 
+// Get an employee's attendance data
+const GetAttendance = (id: number) => {
+  return useQuery(['attendance', id], async () => {
+    return await Get(`${url}/get_emp_inouts?employee_id=${id}`, {})
+  })
+}
+
 // Add a new employee
 const PostEmployee = () => {
   return useMutation(
@@ -52,4 +59,4 @@ const DeleteEmployee = () => {
 
 
 
-export { GetEmployees, GetEmployee, PostEmployee, PutEmployee, DeleteEmployee };
+export { GetEmployees, GetEmployee, GetAttendance, PostEmployee, PutEmployee, DeleteEmployee };
