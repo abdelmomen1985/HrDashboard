@@ -1,13 +1,55 @@
-import Axios, { AxiosRequestConfig } from "axios";
-import { Get } from './helpers';
-import { useQuery } from "react-query";
+import { Get, Post, Put, Delete } from './helpers';
+import { useQuery, useMutation } from "react-query";
 
 const url = process.env.REACT_APP_API_URL;
 
+// Mutation variables for the PUT request
+type PutVariables = {
+  id: string,
+  payload: object
+}
+
+// Get all employees
 const GetEmployees = () => {
   return useQuery("GetEmployees", async () => {
     return await Get(url + '/employees', {})
   })
 }
 
-export { GetEmployees };
+// Get a single employee using its ID
+const GetEmployee = (id: number) => {
+  return useQuery('GetEmployee', async () => {
+    return await Get(`${url}/employee/${id}`, {})
+  })
+}
+
+// Add a new employee
+const PostEmployee = () => {
+  return useMutation(
+    async (payload: object) => {
+      return await Post(url + '/employee', payload, {})
+    }
+  );
+};
+
+// Edit an existing employee
+const PutEmployee = () => {
+  return useMutation (
+    async (variables: PutVariables) => {
+      return await Put(`${url}/employee/${variables.id}`, variables.payload, {})
+    }
+  );
+};
+
+// Delete a single employee
+const DeleteEmployee = () => {
+  return useMutation (
+    async (id: string) => {
+      return await Delete(`${url}/employee/${id}`, {})
+    }
+  );
+};
+
+
+
+export { GetEmployees, GetEmployee, PostEmployee, PutEmployee, DeleteEmployee };

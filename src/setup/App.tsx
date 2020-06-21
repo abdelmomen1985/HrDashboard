@@ -1,20 +1,14 @@
 import React from "react";
 import "./App.css";
-import { HashRouter as Router, Route } from "react-router-dom";
 
 import { Box, ThemeProvider, createMuiTheme } from "@material-ui/core";
 
 import { create } from "jss";
 import rtl from "jss-rtl";
 import { StylesProvider, jssPreset } from "@material-ui/core/styles";
-import MainLayout from "./components/layouts/MainLayout";
+import MainLayout from "../components/layouts/MainLayout";
+import Router from './router';
 
-// Routes
-import Home from "./views/Home";
-import Demo from "./views/Demo";
-import Employees from "./views/Employees";
-import Branches from "./views/Branches";
-import Departments from "./views/Departments";
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -45,15 +39,7 @@ function App() {
       <StylesProvider jss={jss}>
         <ThemeProvider theme={theme}>
           <Box height="100%">
-            <Router>
-              <MainLayout>
-                <Route path="/" exact component={Home} />
-                <Route path="/demo" component={Demo} />
-                <Route path="/branches" component={Branches} />
-                <Route path="/employees" component={Employees} />
-                <Route path="/departments" component={Departments} />
-              </MainLayout>
-            </Router>
+            <Router />
           </Box>
         </ThemeProvider>
       </StylesProvider>

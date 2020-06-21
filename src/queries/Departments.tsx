@@ -3,8 +3,8 @@ import { useQuery, useMutation } from "react-query";
 
 const url = process.env.REACT_APP_API_URL
 
-// Mutation variables for the Patch request
-type PatchVariables = {
+// Mutation variables for the PUT request
+type PutVariables = {
   id: string,
   payload: object
 }
@@ -31,7 +31,7 @@ const PostDepartment = () => {
 // Edit an existing department
 const EditDepartment = () => {
   return useMutation(
-    async (variables: PatchVariables) => {
+    async (variables: PutVariables) => {
       return await Put(`${url}/department/${variables.id}`, variables.payload, {})
     }
   )

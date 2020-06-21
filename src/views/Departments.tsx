@@ -3,10 +3,8 @@ import {
     List,
     Button,
     Box,
-    makeStyles,
     LinearProgress
 } from "@material-ui/core";
-
 import { GetDepartments, DeleteDepartment } from '../queries/Departments';
 
 // UI Components
@@ -16,27 +14,13 @@ import DeleteDialog from '../components/ui/DeleteDialog';
 import Modal from '../components/ui/Modal';
 import ListItem from '../components/ui/ListItem';
 
-
-const useStyles = makeStyles((theme) => ({
-    button: {
-        color: theme.palette.error.main,
-    },
-
-    loadingSpinner: {
-        width: '100%',
-        marginLeft: '50%',
-    }
-}));
-
 export default function Departments() {
-    const classes = useStyles();
     const [createModal, openCreateModal] = useState(false);
     const [editModal, openEditModal] = useState(false);
     const [deleteDialog, openDeleteDialog] = useState(false);
     const [selectedDepartment, setSelectedDepartment] = useState({} as any);
 
-
-    // Fetch departments list
+    // HTTP Requests
     const { data, status, error, refetch } = GetDepartments();
     const [mutate, { status: mutateStatus }] = DeleteDepartment();
 
@@ -67,7 +51,7 @@ export default function Departments() {
         <Box component="div" m={2}>
 
             {/* Loading Spinner */}
-            {!data && mutateStatus !== 'loading' && (
+            {mutateStatus === 'loading' && (
                 <LinearProgress color="secondary" />
             )}
 

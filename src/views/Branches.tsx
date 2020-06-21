@@ -17,15 +17,7 @@ import Modal from '../components/ui/Modal';
 import NewBranchForm from '../components/branches/NewBranchForm';
 import EditBranchFrom from '../components/branches/EditBranchForm';
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  button: {
-    color: theme.palette.error.main,
-  },
-}));
-
 export default function Branches() {
-  const classes = useStyles();
 
   // Component State
   const [createModal, openCreateModal] = useState(false);
@@ -74,7 +66,7 @@ export default function Branches() {
       <Box component="div" m={2}>
 
         {/* Loading Progress */}
-        {mutateStatus && mutateStatus === "loading" && (
+        {mutateStatus === "loading" && (
           <LinearProgress color="secondary" />
         )}
 

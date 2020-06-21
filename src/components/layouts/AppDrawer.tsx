@@ -53,11 +53,11 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
       <Divider />
       <MenuList>
 
-        <DrawerItem link={""} title={"الرئيسية"} pathname={pathname}><Home /></DrawerItem>
-        <DrawerItem link={"branches"} title={"الفروع"} pathname={pathname}><LocationOn /></DrawerItem>
-        <DrawerItem link={"departments"} title ={"الاقسام"} pathname={pathname}><Department /></DrawerItem>
-        <DrawerItem link={"employees"} title={"الموظفين"} pathname={pathname}><Person /></DrawerItem>
-        <DrawerItem link={"requests"} title={"طلبات الاجازة"} pathname={pathname}><Inbox /></DrawerItem>
+        <DrawerItem link={"/"} title={"الرئيسية"} pathname={pathname}><Home /></DrawerItem>
+        <DrawerItem link={"/branches"} title={"الفروع"} pathname={pathname}><LocationOn /></DrawerItem>
+        <DrawerItem link={"/departments"} title ={"الاقسام"} pathname={pathname}><Department /></DrawerItem>
+        <DrawerItem link={"/employees"} title={"الموظفين"} pathname={pathname}><Person /></DrawerItem>
+        <DrawerItem link={"/requests"} title={"طلبات الاجازة"} pathname={pathname}><Inbox /></DrawerItem>
 
       </MenuList>
       <Divider />
