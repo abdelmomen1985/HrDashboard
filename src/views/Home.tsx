@@ -8,12 +8,10 @@ import BranchesSVG from "../assets/branches.svg";
 import InoutSVG from "../assets/inout.svg";
 import EmployeesSVG from "../assets/employees.svg";
 import VacationsSvg from "../assets/vacations.svg";
-import ConversationsSvg from "../assets/conversations.svg";
-import DepartmentSvg from '../assets/departments.svg';
+import DepartmentSvg from "../assets/departments.svg";
 
 // Localized Strings
-import { strings } from '../localization';
-
+import { strings } from "../localization";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,29 +23,46 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Home() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={3}>
-          <DashboardPaper svg={BranchesSVG} to={"branches"} text={strings.branches} />
+        <Grid item xs={6} sm={3}>
+          <DashboardPaper
+            svg={BranchesSVG}
+            to={"branches"}
+            text={strings.branches}
+          />
         </Grid>
 
-        <Grid item xs={3}>
-          <DashboardPaper svg={DepartmentSvg} to={"departments"} text={strings.departments} />
+        <Grid item xs={6} sm={3}>
+          <DashboardPaper
+            svg={DepartmentSvg}
+            to={"departments"}
+            text={strings.departments}
+          />
         </Grid>
 
-        <Grid item xs={3}>
+        <Grid item xs={6} sm={3}>
           <DashboardPaper
             svg={EmployeesSVG}
             to={"employees"}
             text={strings.employees}
           />
         </Grid>
-        <Grid item xs={3}>
-          <DashboardPaper svg={InoutSVG} to={"/attendance"} text={strings.attendance} />
+        <Grid item xs={6} sm={3}>
+          <DashboardPaper
+            svg={InoutSVG}
+            to={"/attendance"}
+            text={strings.attendance}
+          />
         </Grid>
-        <Grid item xs={3}>
-          <DashboardPaper svg={VacationsSvg} to={""} text={strings.leaveRequests} />
+        <Grid item xs={6} sm={3}>
+          <DashboardPaper
+            svg={VacationsSvg}
+            to={""}
+            text={strings.leaveRequests}
+          />
         </Grid>
 
         {/* <Grid item xs={3}>

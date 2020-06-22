@@ -3,11 +3,13 @@ import App from "./setup/App";
 
 const ACTION_TYPES = {
   CHANGE_NOTEBOOK: "CHANGE_NOTEBOOK",
+  CHANGE_CURRENT_LANG: "CHANGE_CURRENT_LANG",
   LOGOUT: "LOGOUT",
 };
 
 const initialState = {
   notebook: {},
+  currentLang: localStorage.getItem("lang"),
 };
 
 const AppCtxt = React.createContext({ ...initialState });
@@ -40,11 +42,17 @@ function CtxtProvider(props: any) {
     dispatch({ notebook: notebook, type: ACTION_TYPES.CHANGE_NOTEBOOK });
   }
 
+  function setCurrentLang(lang: string) {
+    dispatch({ currentLang: lang, type: ACTION_TYPES.CHANGE_CURRENT_LANG });
+  }
+
   return (
     <AppCtxt.Provider
       value={{
         notebook: state.notebook,
+        currentLang: state.currentLang,
         setNotebook,
+        setCurrentLang,
       }}
       {...props}
     >

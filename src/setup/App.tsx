@@ -6,19 +6,17 @@ import { Box, ThemeProvider, createMuiTheme } from "@material-ui/core";
 import { create } from "jss";
 import rtl from "jss-rtl";
 import { StylesProvider, jssPreset } from "@material-ui/core/styles";
-import MainLayout from "../components/layouts/MainLayout";
-import Router from './router';
+import Router from "./router";
 
-const currentLanguage = localStorage.getItem('lang')
-
+const currentLanguage = localStorage.getItem("lang");
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 const theme = createMuiTheme({
-  direction: currentLanguage !== 'en' ? 'rtl' : 'ltr',
+  direction: currentLanguage !== "en" ? "rtl" : "ltr",
   typography: {
-    "fontFamily": currentLanguage !== 'en' ? 'Cairo' : "Arial",
+    fontFamily: currentLanguage !== "en" ? "Cairo" : "Arial",
   },
   palette: {
     primary: {
@@ -39,7 +37,7 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  document.body.style.direction = currentLanguage === 'en' ? 'ltr' : 'rtl'
+  document.body.style.direction = currentLanguage === "en" ? "ltr" : "rtl";
   return (
     <div className="App">
       <StylesProvider jss={jss}>
