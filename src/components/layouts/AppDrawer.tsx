@@ -14,6 +14,9 @@ import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 // Component Styles
 import DrawerStyles from './styles/drawer-styles';
 
+// Localized Strings
+import {strings} from '../../localization';
+
 
 interface DrawerItemProps {
   children: React.ReactNode;
@@ -25,19 +28,22 @@ interface DrawerItemProps {
 const DrawerItem = (props: DrawerItemProps) => {
   const classes = DrawerStyles();
 
+  console.log(props.link);
+  console.log(props.pathname)
+
   return (
     <MenuItem
     button
     component={Link}
     to={props.link}
-    selected={`/${props.link}` === props.pathname}
+    selected={`${props.link}` === props.pathname}
   >
     <ListItemIcon>
       {props.children}
     </ListItemIcon>
     <ListItemText
       disableTypography
-      primary={<Typography className={classes.listText}>{props.title}</Typography>}
+      primary={<Typography>{props.title}</Typography>}
     />
   </MenuItem>
   )
@@ -53,12 +59,12 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
       <Divider />
       <MenuList>
 
-        <DrawerItem link={"/"} title={"الرئيسية"} pathname={pathname}><Home /></DrawerItem>
-        <DrawerItem link={"/branches"} title={"الفروع"} pathname={pathname}><LocationOn /></DrawerItem>
-        <DrawerItem link={"/departments"} title ={"الاقسام"} pathname={pathname}><Department /></DrawerItem>
-        <DrawerItem link={"/employees"} title={"الموظفين"} pathname={pathname}><Person /></DrawerItem>
-        <DrawerItem link={"/attendance"} title={"الحضور و الانصراف"} pathname={pathname}><MeetingRoom /></DrawerItem>
-        <DrawerItem link={"/requests"} title={"طلبات الاجازة"} pathname={pathname}><Inbox /></DrawerItem>
+        <DrawerItem link={"/"} title={strings.home} pathname={pathname}><Home /></DrawerItem>
+        <DrawerItem link={"/branches"} title={strings.branches} pathname={pathname}><LocationOn /></DrawerItem>
+        <DrawerItem link={"/departments"} title ={strings.departments} pathname={pathname}><Department /></DrawerItem>
+        <DrawerItem link={"/employees"} title={strings.employees} pathname={pathname}><Person /></DrawerItem>
+        <DrawerItem link={"/attendance"} title={strings.attendance} pathname={pathname}><MeetingRoom /></DrawerItem>
+        <DrawerItem link={"/requests"} title={strings.leaveRequests} pathname={pathname}><Inbox /></DrawerItem>
 
       </MenuList>
       <Divider />

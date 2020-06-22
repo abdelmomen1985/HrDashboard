@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import { strings } from '../../localization';
+
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
     head: {
@@ -51,6 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function AttendanceTable(props: any) {
   const classes = useStyles();
   const [tableRows, setTableRows] = useState([] as any);
+  const tableStrings = strings.table;
 
   useEffect(() => {
     const date = new Date();
@@ -90,9 +93,9 @@ export default function AttendanceTable(props: any) {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>اليوم</StyledTableCell>
-            <StyledTableCell align="right">الحضور</StyledTableCell>
-            <StyledTableCell align="right">الانصراف</StyledTableCell>
+            <StyledTableCell>{tableStrings.day}</StyledTableCell>
+            <StyledTableCell align="right">{tableStrings.arrival}</StyledTableCell>
+            <StyledTableCell align="right">{tableStrings.exit}</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

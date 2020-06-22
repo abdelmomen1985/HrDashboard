@@ -15,7 +15,10 @@ import ListItem from '../components/ui/ListItem';
 import DeleteDialog from '../components/ui/DeleteDialog';
 import Modal from '../components/ui/Modal';
 import NewBranchForm from '../components/branches/NewBranchForm';
-import EditBranchFrom from '../components/branches/EditBranchForm';
+import EditBranchFrom from '../components/branches/EditBranchForm'
+
+// Localized Strings
+import { strings } from '../localization';
 
 export default function Branches() {
 
@@ -77,7 +80,7 @@ export default function Branches() {
               <ListItem item={branch} key={index}
                 onEditClick={() => onEditClick(branch)}
                 onDeleteClick={() => onDeleteClick(branch)}>
-                  <LocationOn style={{ marginLeft: 12 }} color="secondary" />
+                  <LocationOn style={{ margin: 12 }} color="secondary" />
               </ListItem>
             ))}
         </List>
@@ -88,16 +91,16 @@ export default function Branches() {
           variant="contained"
           color="primary"
           onClick={() => openCreateModal(true)}>
-          اضافة فرع جديد
+          {strings.addBranch}
         </Button>
 
         {/* Create Branch Modal */}
-        <Modal title={"اضافة فرع جديد"} open={createModal} handleClose={() => { openCreateModal(false); refetch() }}>
+        <Modal title={strings.addBranch} open={createModal} handleClose={() => { openCreateModal(false); refetch() }}>
           <NewBranchForm handleSave={() => { openCreateModal(false); refetch() }} />
         </Modal>
 
         {/* Edit Branch Modal */}
-        <Modal title={"تعديل الفرع"} open={editModal} handleClose={() => { openEditModal(false); refetch() }}>
+        <Modal title={strings.editBranch} open={editModal} handleClose={() => { openEditModal(false); refetch() }}>
           <EditBranchFrom handleSave={() => { openEditModal(false); refetch() }} branch={selectedBranch} />
         </Modal>
 

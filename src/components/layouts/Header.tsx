@@ -13,6 +13,9 @@ import { withRouter } from "react-router-dom";
 // Component Styles
 import HeaderStyles from './styles/header-styles';
 
+// Localization
+import { setLanguage, strings } from '../../localization';
+
 
 // Navigation Bar Header
 function Header(props: any) {
@@ -34,15 +37,15 @@ function Header(props: any) {
       <Typography
         variant="h6"
         noWrap
-        style={{ flexGrow: 1, fontFamily: "ElMessiri" }}>
-        {pathname && pathname === "/branches" && "الفروع"}
-        {pathname && pathname === "/departments" && "الفروع"}
-        {pathname && pathname === "/employees" && "الموظفين"}
+        style={{ flexGrow: 1}}>
+        {pathname && pathname === "/branches" && strings.branches}
+        {pathname && pathname === "/departments" && strings.departments}
+        {pathname && pathname === "/employees" && strings.employees}
       </Typography>
 
-      <Button className={classes.button}>تسجيل دخول</Button>
-      <Button component={Link} className={classes.button} to={"/demo"}>
-        تجريبي
+      <Button className={classes.button}>{strings.signIn}</Button>
+      <Button className={classes.button} onClick={() => setLanguage()}>
+        {strings.language}
       </Button>
     </Toolbar>
   </AppBar>

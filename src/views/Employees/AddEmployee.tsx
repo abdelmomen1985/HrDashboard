@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AddEmployeeForm from '../../components/employees/AddEmployeeForm';
+import { strings } from '../../localization'
 
 // HTTP POST Action
 import { PostEmployee } from '../../queries/Employees';
@@ -20,7 +21,7 @@ export default function AddEmployee(props: any) {
         const enName = inputData.enName;
 
         // Input validation
-        if (!arName || !enName) return setError("برجاء ملئ جميع الخانات");
+        if (!arName || !enName) return setError(strings.employeeError);
         else setError("");
 
         /**

@@ -11,6 +11,9 @@ import { GetEmployees, DeleteEmployee } from "../../queries/Employees";
 import ListItem from '../../components/ui/ListItem';
 import DeleteDialog from '../../components/ui/DeleteDialog';
 
+// Localized Strings
+import { strings } from '../../localization';
+
 export default function ListEmployees(props: any) {
   const [deleteDialog, openDeleteDialog] = useState(false);
   const [selectedEmployee, setselectedEmployee] = useState<any>({})
@@ -60,7 +63,7 @@ export default function ListEmployees(props: any) {
 
         {/* New Employee Button */}
         <Button variant="contained" color="primary" onClick={() => props.history.push('/add-employee')}>
-          اضافة موطف جديد
+          {strings.addEmployee}
         </Button>
 
         {/* Delete Employee Dialog */}

@@ -11,6 +11,9 @@ import VacationsSvg from "../assets/vacations.svg";
 import ConversationsSvg from "../assets/conversations.svg";
 import DepartmentSvg from '../assets/departments.svg';
 
+// Localized Strings
+import { strings } from '../localization';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -26,26 +29,27 @@ export default function Home() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <DashboardPaper svg={BranchesSVG} to={"branches"} text={"الفروع"} />
+          <DashboardPaper svg={BranchesSVG} to={"branches"} text={strings.branches} />
         </Grid>
 
         <Grid item xs={3}>
-          <DashboardPaper svg={DepartmentSvg} to={"departments"} text={"الاقسام"} />
+          <DashboardPaper svg={DepartmentSvg} to={"departments"} text={strings.departments} />
         </Grid>
 
         <Grid item xs={3}>
           <DashboardPaper
             svg={EmployeesSVG}
             to={"employees"}
-            text={"ادارة الموظفين"}
+            text={strings.employees}
           />
         </Grid>
         <Grid item xs={3}>
-          <DashboardPaper svg={InoutSVG} to={"/attendance"} text={"الحضور والانصراف"} />
+          <DashboardPaper svg={InoutSVG} to={"/attendance"} text={strings.attendance} />
         </Grid>
         <Grid item xs={3}>
-          <DashboardPaper svg={VacationsSvg} to={""} text={" طلبات الاجازة"} />
+          <DashboardPaper svg={VacationsSvg} to={""} text={strings.leaveRequests} />
         </Grid>
+
         {/* <Grid item xs={3}>
           <DashboardPaper svg={ConversationsSvg} to={""} text={"  "} />
         </Grid> */}

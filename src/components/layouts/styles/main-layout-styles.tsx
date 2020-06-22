@@ -2,6 +2,8 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core";
 
 const drawerWidth = 240;
 
+const currentLanguage = localStorage.getItem('lang')
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     appBar: {
       [theme.breakpoints.up("sm")]: {
         width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
+      
       },
       flexGrow: 1,
     },
@@ -31,10 +33,12 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
+   
     },
     content: {
       flexGrow: 1,
       padding: theme.spacing(3),
+      
     },
     button: {
       color: "#fff",

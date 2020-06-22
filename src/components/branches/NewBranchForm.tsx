@@ -15,6 +15,8 @@ import LocateSVG from "../../assets/location_searching.svg";
 
 import { PostBranch } from '../../queries/Branches';
 
+import { strings } from '../../localization';
+
 interface NewBranchFormProps {
   handleSave: () => void;
 }
@@ -69,14 +71,14 @@ export default function NewBranchForm({ handleSave }: NewBranchFormProps) {
     <>
       <form onSubmit={handleSubmit}>
         <FormControl required={true}>
-          <InputLabel htmlFor="my-input">الاسم</InputLabel>
+          <InputLabel htmlFor="my-input">{strings.name}</InputLabel>
           <Input
             inputRef={(input) => input && input.focus()}
             id="my-input"
             name="name"
             aria-describedby="my-helper-text"
           />
-          <FormHelperText id="my-helper-text">اسم الفرع</FormHelperText>
+          <FormHelperText id="my-helper-text">{strings.branchName}</FormHelperText>
         </FormControl>
         <div>
           <Map
@@ -110,7 +112,7 @@ export default function NewBranchForm({ handleSave }: NewBranchFormProps) {
             startIcon={<Save />}
             type="submit"
           >
-            حفظ
+            {strings.save}
           </Button>
         </Box>
       </form>

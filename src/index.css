@@ -13,13 +13,7 @@ code {
 }
 
 @font-face {
-  font-family: "ElMessiri";
-  src: local("ElMessiri"),
-    url(./assets/fonts/ElMessiri-SemiBold.ttf) format("truetype");
-}
-
-@font-face {
-  font-family: "ElMessiri Bold";
-  src: local("ElMessiri Bold"),
-    url(./assets/fonts/ElMessiri-Bold.ttf) format("truetype");
+  font-family: 'Cairo';
+  src: local('Cairo'),
+  url(./assets/fonts/Cairo-SemiBold.ttf);
 }

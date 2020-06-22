@@ -14,6 +14,9 @@ import DeleteDialog from '../components/ui/DeleteDialog';
 import Modal from '../components/ui/Modal';
 import ListItem from '../components/ui/ListItem';
 
+// Localized Strings
+import { strings } from '../localization';
+
 export default function Departments() {
     const [createModal, openCreateModal] = useState(false);
     const [editModal, openEditModal] = useState(false);
@@ -69,16 +72,16 @@ export default function Departments() {
 
             {/* New Department Button */}
             <Button variant="contained" color="primary" onClick={() => openCreateModal(true)}>
-                اضافة قسم جديد
+                {strings.addDepartment}
             </Button>
 
             {/* New Department Modal */}
-            <Modal title={"اضافة قسم جديد"} open={createModal} handleClose={() => { openEditModal(false); refetch(); }}>
+            <Modal title={strings.addDepartment} open={createModal} handleClose={() => { openEditModal(false); refetch(); }}>
                 <NewDepartmentForm handleSave={() => { openCreateModal(false); refetch() }} />
             </Modal>
 
             {/* Edit Department Modal */}
-            <Modal title={"تعديل القسم"} open={editModal} handleClose={() => { openEditModal(false); refetch(); }}>
+            <Modal title={strings.editDepartment} open={editModal} handleClose={() => { openEditModal(false); refetch(); }}>
                 <EditDepartmentForm handleSave={() => { openEditModal(false); refetch() }} department={selectedDepartment} />
             </Modal>
 

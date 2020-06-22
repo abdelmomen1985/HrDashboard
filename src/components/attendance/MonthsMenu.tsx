@@ -4,10 +4,11 @@ import {
     Select,
     makeStyles,
     MenuItem,
-    Container,
     FormControl,
    
 } from '@material-ui/core';
+
+import { strings } from '../../localization';
 
 const useStyles = makeStyles(theme => ({
     employeeSelect: {
@@ -52,13 +53,13 @@ export default function MonthsMenu(props: any) {
 
     return (
             <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="employee">اختر الشهر</InputLabel>
+                <InputLabel id="employee">{strings.monthMenu}</InputLabel>
                 <Select
                     className={classes.employeeSelect}
                     labelId="employee"
                     id="demo-simple-select-outlined"
                     defaultValue={currentMonth}
-                    label="اختر الشهر">
+                    label={strings.monthMenu}>
                     <MenuItem value={0}>
                         <em>None</em>
                     </MenuItem>

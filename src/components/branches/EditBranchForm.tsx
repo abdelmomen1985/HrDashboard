@@ -14,6 +14,8 @@ import LocateSVG from "../../assets/location_searching.svg";
 
 import { EditBranch } from '../../queries/Branches';
 
+import { strings } from '../../localization';
+
 interface EditBranchFormProps {
   handleSave: () => void,
   branch: {
@@ -81,7 +83,7 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
     <>
       <form onSubmit={handleSubmit}>
         <FormControl required={true}>
-          <InputLabel htmlFor="my-input">الاسم</InputLabel>
+          <InputLabel htmlFor="my-input">{strings.name}</InputLabel>
           <Input
             inputRef={(input) => input && input.focus()}
             defaultValue={branch.ar_name}
@@ -89,7 +91,7 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
             name="name"
             aria-describedby="my-helper-text"
           />
-          <FormHelperText id="my-helper-text">اسم الفرع</FormHelperText>
+          <FormHelperText id="my-helper-text">{strings.branchName}</FormHelperText>
         </FormControl>
         <div>
           <Map
@@ -123,7 +125,7 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
             startIcon={<Save />}
             type="submit"
           >
-            حفظ
+            {strings.save}
           </Button>
         </Box>
       </form>

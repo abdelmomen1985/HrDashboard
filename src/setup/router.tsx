@@ -4,7 +4,6 @@ import MainLayout from "../components/layouts/MainLayout";
 
 // Components
 import Home from "../views/Home";
-import Demo from "../views/Demo";
 import Employees from "../views/Employees/Employees";
 import Branches from "../views/Branches";
 import Departments from "../views/Departments";
@@ -18,7 +17,6 @@ export default function Routes() {
             <MainLayout>
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/demo" component={Demo} />
                     <Route path="/branches" component={Branches} />
                     <Route path="/add-employee" component={AddEmployee} />
                     <Route path="/employees/edit/:id" component={EditEmployee} />

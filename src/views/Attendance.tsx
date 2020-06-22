@@ -15,6 +15,8 @@ import AttendanceTable from '../components/attendance/AttendanceTable'
 // HTTP Requests
 import { GetEmployees, GetAttendance } from '../queries/Employees';
 
+import { strings } from '../localization';
+
 const useStyles = makeStyles(theme => ({
     paper: {
         display: 'flex',
@@ -58,7 +60,7 @@ export default function Attendance() {
                 <div className={classes.paper}>
 
                     {/* Page Title */}
-                    <Typography variant="h4" align="center" className={classes.title}>جدول الحضور و الانصراف</Typography>
+                    <Typography variant="h4" align="center" className={classes.title}>{strings.tableTitle}</Typography>
 
                     {/* Select Employee Dropdown Menu */}
                     <EmployeesMenu employees={employees} selectedEmployee={getEmployeeData} />

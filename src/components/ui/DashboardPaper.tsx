@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme: Theme) =>
       textDecoration: "none",
     },
     typo: {
-      fontFamily: "ElMessiri Bold",
+      // fontFamily: "ElMessiri ",
+      marginTop: 10
     },
   })
 );
@@ -56,10 +57,7 @@ export default function DashboardPaper({ svg, to, text }: DashboardPaperProps) {
           <img src={svg} alt="" style={{ maxWidth: hovered ? "66%" : "65%" }} />
           <div>
             <Typography
-              className={` ${hovered ? "hovered-dashtext" : ""} ${
-                classes.typo
-              }`}
-            >
+              className={` ${hovered ? "hovered-dashtext" : ""} ${classes.typo}`}>
               {text}
             </Typography>
           </div>

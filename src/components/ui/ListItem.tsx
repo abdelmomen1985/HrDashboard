@@ -1,15 +1,12 @@
 import React from 'react';
 import { Edit, Delete } from "@material-ui/icons";
 import {
-    List,
     ListItem,
     ListItemText,
-    Button,
-    Box,
     IconButton,
     makeStyles,
-    LinearProgress
 } from "@material-ui/core";
+
 
 
 // Component Styles
@@ -34,12 +31,16 @@ type ListItemProps = {
 
 export default function ListItemComponent({ children, item, onEditClick, onDeleteClick }: ListItemProps) {
     const classes = useStyles();
+    const currentLanguage = localStorage.getItem('lang');
+
+    var name;
+    if(item.en_name && currentLanguage === 'en') name = item.en_name;
+    else name = item.ar_name
 
     return (
-
         <ListItem button>
             {children}
-            <ListItemText primary={item.ar_name} />
+            <ListItemText primary={name} />
             <IconButton color="primary" aria-label="edit" onClick={() => onEditClick()}>
                 <Edit />
             </IconButton>

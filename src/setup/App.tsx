@@ -9,12 +9,17 @@ import { StylesProvider, jssPreset } from "@material-ui/core/styles";
 import MainLayout from "../components/layouts/MainLayout";
 import Router from './router';
 
+const currentLanguage = localStorage.getItem('lang')
+
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 const theme = createMuiTheme({
-  direction: "rtl",
+  direction: currentLanguage !== 'en' ? 'rtl' : 'ltr',
+  typography: {
+    "fontFamily": currentLanguage !== 'en' ? 'Cairo' : "Arial",
+  },
   palette: {
     primary: {
       main: "#54BDB0",
@@ -34,6 +39,7 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  document.body.style.direction = currentLanguage === 'en' ? 'ltr' : 'rtl'
   return (
     <div className="App">
       <StylesProvider jss={jss}>

@@ -4,12 +4,10 @@ import {
     Select,
     makeStyles,
     MenuItem,
-    Container,
     FormControl,
-   
 } from '@material-ui/core';
 
-
+import { strings } from '../../localization';
 
 const useStyles = makeStyles(theme => ({
     employeeSelect: {
@@ -25,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 export default function EmployeesMenu(props: any) {
     const classes = useStyles();
     const employees = props.employees;
+    const currentLanguage = localStorage.getItem('lang')
 
     // Send the selected employee's ID to the parent component
     const onInputChange = (id: number, name: string) => {
@@ -33,20 +32,22 @@ export default function EmployeesMenu(props: any) {
 
     return (
             <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="employee">اختر اسم الموظف</InputLabel>
+                <InputLabel id="employee">{strings.employeeMenu}</InputLabel>
                 <Select
                     className={classes.employeeSelect}
                     labelId="employee"
                     id="demo-simple-select-outlined"
                     defaultValue={0}
-                    label="اختر اسم الموظف">
+                    label={strings.employeeMenu}>
                     <MenuItem value={0}>
                         <em>None</em>
                     </MenuItem>
-                    {employees.map((employee: any, index: number) => (
+                    {employees.map((employee: any, index: number) => {
+                        const name = currentLanguage === 'en' ? employee.en_name : employee.ar_name
+                        return (
                         <MenuItem key={index} value={employee.id}
-                         onClick={() => onInputChange(employee.id, employee.ar_name)}>{employee.ar_name}</MenuItem>
-                    ))}
+                         onClick={() => onInputChange(employee.id, name)}>{name}</MenuItem>
+                    )})}
                 </Select>
             </FormControl>
         

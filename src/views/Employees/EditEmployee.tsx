@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { GetEmployee, PutEmployee } from '../../queries/Employees';
 import { LinearProgress } from '@material-ui/core';
 
+import { strings } from '../../localization'
+
 function EditEmployee(props: any) {
     const [inputData, setInputData] = useState<any>({});
     const [error, setError] = useState<any>('');
@@ -33,7 +35,7 @@ function EditEmployee(props: any) {
         const enName = inputData.enName;
 
         // Input validation
-        if (!arName || !enName) return setError("برجاء ملئ جميع الخانات");
+        if (!arName || !enName) return setError(strings.employeeError);
         else setError("");
 
         /**
