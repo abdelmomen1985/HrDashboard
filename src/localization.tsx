@@ -30,7 +30,8 @@ const strings = new LocalizedStrings({
     departments: "Departments",
     employees: "Employees",
     attendance: "Attendance",
-    leaveRequests: "Leave Requests",
+    employeeRequests: "Employee Requests",
+    requestTypes: "Request Types",
     signIn: "Sign In",
 
     // Branches
@@ -47,6 +48,17 @@ const strings = new LocalizedStrings({
     addEmployee: "Add Employee",
     editEmployee: "ُEdit Employee",
     editEmployeeError: "Please fill all fields",
+
+
+    // Request Types
+    addType: "Add Request Type",
+    editType: "Edit Request Type",
+    typeNameEn: "Type Name in English",
+    typeDescriptionEn: "Description in English",
+    typeDescrptionAr: "Description in Arabic",
+    typeNameAr: "Type Name in Arabic",
+    typeInputError: 'Please fill all fields',
+    departmentError: "Please enter department",
 
     // Attendance
     table: {
@@ -73,8 +85,9 @@ const strings = new LocalizedStrings({
     departments: "الاقسام",
     employees: "ادارة الموظفين",
     attendance: "الحضور و الانصراف",
-    leaveRequests: "طلبات الاجازة",
+    employeeRequests: "طلبات الموظفين",
     signIn: "تسجيل الدخول",
+    requestTypes: "تصنيفات الطلبات",
 
     // BRANCHES
     addBranch: "اضافة فرع جديد",
@@ -90,6 +103,16 @@ const strings = new LocalizedStrings({
     addDepartment: "اضافة قسم جديد",
     editDepartment: "تعديل القسم",
     departmentName: "اسم القسم",
+
+    // REQUEST TYPES
+    addType: "أضافة تصنيف",
+    editType: "تعديل التصنيف",
+    typeNameAr: "اسم التصنيف بالعربية",
+    typeNameEn: "اسم التصنيف بالانجليزية",
+    typeDescriptionEn: "الوصف بالانجليزية",
+    typeDescrptionAr: "الوصف بالعربية",
+    departmentError: 'برجاء ادخال القسم',
+
 
     // ATTENDANCE
     table: {

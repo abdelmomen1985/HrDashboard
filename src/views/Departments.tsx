@@ -76,7 +76,7 @@ export default function Departments() {
             </Button>
 
             {/* New Department Modal */}
-            <Modal title={strings.addDepartment} open={createModal} handleClose={() => { openEditModal(false); refetch(); }}>
+            <Modal title={strings.addDepartment} open={createModal} handleClose={() => { openCreateModal(false); refetch(); }}>
                 <NewDepartmentForm handleSave={() => { openCreateModal(false); refetch() }} />
             </Modal>
 

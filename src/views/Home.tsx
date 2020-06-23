@@ -9,6 +9,7 @@ import InoutSVG from "../assets/inout.svg";
 import EmployeesSVG from "../assets/employees.svg";
 import VacationsSvg from "../assets/vacations.svg";
 import DepartmentSvg from "../assets/departments.svg";
+import TypesSvg from '../assets/agenda.svg'
 
 // Localized Strings
 import { strings } from "../localization";
@@ -60,8 +61,16 @@ export default function Home() {
         <Grid item xs={6} sm={3}>
           <DashboardPaper
             svg={VacationsSvg}
-            to={""}
-            text={strings.leaveRequests}
+            to={"/requests"}
+            text={strings.employeeRequests}
+          />
+        </Grid>
+
+        <Grid item xs={6} sm={3}>
+          <DashboardPaper
+            svg={TypesSvg}
+            to={"/requests/types"}
+            text={strings.requestTypes}
           />
         </Grid>
 

@@ -13,6 +13,7 @@ import {
   LocationOn,
   Home,
   MeetingRoom,
+  MergeType
 } from "@material-ui/icons";
 import Department from "@material-ui/icons/BusinessCenter";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
@@ -33,9 +34,6 @@ interface DrawerItemProps {
 const DrawerItem = (props: DrawerItemProps) => {
   const classes = DrawerStyles();
 
-  console.log(props.link);
-  console.log(props.pathname);
-
   return (
     <MenuItem
       button
@@ -54,51 +52,59 @@ const DrawerItem = (props: DrawerItemProps) => {
 
 function AppDrawer({ location: { pathname } }: RouteComponentProps) {
   const classes = DrawerStyles();
-
-  console.log(pathname);
   return (
     <div>
       <div className={classes.toolbar} />
       <Divider />
       <MenuList>
+
         <DrawerItem link={"/"} title={strings.home} pathname={pathname}>
           <Home />
         </DrawerItem>
+
         <DrawerItem
           link={"/branches"}
           title={strings.branches}
-          pathname={pathname}
-        >
+          pathname={pathname}>
           <LocationOn />
         </DrawerItem>
+
         <DrawerItem
           link={"/departments"}
           title={strings.departments}
-          pathname={pathname}
-        >
+          pathname={pathname}>
           <Department />
         </DrawerItem>
+
         <DrawerItem
           link={"/employees"}
           title={strings.employees}
-          pathname={pathname}
-        >
+          pathname={pathname}>
           <Person />
         </DrawerItem>
+
         <DrawerItem
           link={"/attendance"}
           title={strings.attendance}
-          pathname={pathname}
-        >
+          pathname={pathname}>
           <MeetingRoom />
         </DrawerItem>
+
         <DrawerItem
           link={"/requests"}
-          title={strings.leaveRequests}
-          pathname={pathname}
-        >
+          title={strings.employeeRequests}
+          pathname={pathname}>
           <Inbox />
         </DrawerItem>
+
+        
+        <DrawerItem
+          link={"/requests/types"}
+          title={strings.requestTypes}
+          pathname={pathname}>
+          <MergeType />
+        </DrawerItem>
+
       </MenuList>
       <Divider />
     </div>

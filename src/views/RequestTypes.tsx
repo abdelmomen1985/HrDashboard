@@ -1,0 +1,76 @@
+import React, { useState } from 'react';
+import {
+    List,
+    Button,
+    Box,
+    LinearProgress
+} from '@material-ui/core';
+
+import { GetTypes } from '../queries/RequestTypes';
+
+import { strings } from '../localization';
+
+// UI Components
+import NewTypeForm from '../components/requests-types/NewTypeForm';
+import EditTypeForm from '../components/requests-types/EditTypeForm';
+import DeleteDialog from '../components/ui/DeleteDialog';
+import Modal from '../components/ui/Modal';
+import ListItem from '../components/ui/ListItem';
+
+export default function Types() {
+    const [createModal, openCreateModal] = useState(false);
+    const [editModal, openEditModal] = useState(false);
+    const [deleteDialog, openDeleteDialog] = useState(false);
+    const [selectedType, setSelectedType] = useState({} as any);
+
+    // HTTP Requests
+    const { data: types, status: getStatus, error: getError, refetch } = GetTypes();
+
+    const onDeleteClick = (type: any) => {
+        setSelectedType(type);
+        openDeleteDialog(true);
+    }
+
+    const onEditClick = (type: any) => {
+        setSelectedType(type);
+        openEditModal(true);
+    }
+
+    const handleDelete = async () => { }
+
+
+    if(getStatus === 'loading') return <LinearProgress color="secondary" />
+
+    return (
+        <Box component='div' m={2}>
+            {/* ADD MUTATION LINEAR PROGRES HERE */}
+
+            {/* Types List */}
+            <List>
+                {/* Response Iteration */}
+                {types && types.map((type: any, index: any) => (
+                    <ListItem item={type} key={index}
+                    onEditClick={() => onEditClick(type)}
+                    onDeleteClick={() => onDeleteClick(type)} />
+                ))}
+            </List>
+
+            {/* New Type Button */}
+            <Button variant="contained" color="primary" onClick={() => openCreateModal(true)}>
+                {strings.addType}
+            </Button>
+
+            {/* Add Type Modal */}
+            <Modal title={strings.addType} open={createModal} handleClose={() => {openCreateModal(false); refetch();}}> 
+              <NewTypeForm handleSave={() => {openCreateModal(false); refetch()}} />
+            </Modal>
+
+            {/* Edit Type Modal */}
+            <Modal title={strings.editType} open={editModal} handleClose={() => {openEditModal(false); refetch();}}>
+                <EditTypeForm handleSave={() => {openEditModal(false); refetch()}} type={selectedType} />
+            </Modal>
+
+            
+        </Box>
+    )
+}

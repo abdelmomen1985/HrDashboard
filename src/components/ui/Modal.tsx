@@ -6,13 +6,29 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        
+  
+
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-        border: "2px solid #000",
-        boxShadow: theme.shadows[5],
+        border: 0,
         padding: theme.spacing(2, 4, 3),
+        minWidth: 400,
+        borderRadius: 5,
+        '&:focus': {
+            outline: '0 !important'
+        }
+       
     },
+    title: {
+        textAlign: 'center'
+    },
+    children: {
+        width: 'fit-content',
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    }
 }));
 
 interface Modal {
@@ -50,8 +66,8 @@ export default function AddDepartmentModal(props: Modal) {
 
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title">{props.title}</h2>
-                        <Box width={1}>
+                        <h2 id="transition-modal-title" className={classes.title}>{props.title}</h2>
+                        <Box width={1} className={classes.children}>
                           {props.children}
                         </Box>
                     </div>
