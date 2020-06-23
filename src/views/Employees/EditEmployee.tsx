@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { GetEmployee, PutEmployee } from "../../queries/Employees";
 import { LinearProgress } from "@material-ui/core";
 
-import { strings } from "../../localization";
+import { strings } from "../../localization/localization";
 
 function EditEmployee(props: any) {
   const [inputData, setInputData] = useState<any>({});
@@ -34,7 +34,7 @@ function EditEmployee(props: any) {
     const enName = inputData.enName;
 
     // Input validation
-    if (!arName || !enName) return setError(strings.editEmployeeError);
+    if (!arName || !enName) return setError(strings.employees.editEmployeeError);
     else setError("");
 
     /**

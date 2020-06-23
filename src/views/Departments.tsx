@@ -15,13 +15,15 @@ import Modal from '../components/ui/Modal';
 import ListItem from '../components/ui/ListItem';
 
 // Localized Strings
-import { strings } from '../localization';
+import { strings } from '../localization/localization';
 
 export default function Departments() {
     const [createModal, openCreateModal] = useState(false);
     const [editModal, openEditModal] = useState(false);
     const [deleteDialog, openDeleteDialog] = useState(false);
     const [selectedDepartment, setSelectedDepartment] = useState({} as any);
+
+    const constants = strings.departments;
 
     // HTTP Requests
     const { data, status, error, refetch } = GetDepartments();
@@ -72,16 +74,16 @@ export default function Departments() {
 
             {/* New Department Button */}
             <Button variant="contained" color="primary" onClick={() => openCreateModal(true)}>
-                {strings.addDepartment}
+                {constants.addDepartment}
             </Button>
 
             {/* New Department Modal */}
-            <Modal title={strings.addDepartment} open={createModal} handleClose={() => { openCreateModal(false); refetch(); }}>
+            <Modal title={constants.addDepartment} open={createModal} handleClose={() => { openCreateModal(false); refetch(); }}>
                 <NewDepartmentForm handleSave={() => { openCreateModal(false); refetch() }} />
             </Modal>
 
             {/* Edit Department Modal */}
-            <Modal title={strings.editDepartment} open={editModal} handleClose={() => { openEditModal(false); refetch(); }}>
+            <Modal title={constants.editDepartment} open={editModal} handleClose={() => { openEditModal(false); refetch(); }}>
                 <EditDepartmentForm handleSave={() => { openEditModal(false); refetch() }} department={selectedDepartment} />
             </Modal>
 

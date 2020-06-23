@@ -11,13 +11,14 @@ import { Save } from "@material-ui/icons";
 import Axios from "axios";
 
 import { PostDepartment } from '../../queries/Departments';
-import { strings } from '../../localization'; 
+import { strings } from '../../localization/localization'; 
 
 interface NewDepartmentFormProps {
     handleSave: () => void;
 };
 
 export default function NewDepartmentForm({ handleSave }: NewDepartmentFormProps) {
+    const constants = strings.departments;
 
     // HTTP Request
     const [mutate, {status: status, error: error}] = PostDepartment();
@@ -41,14 +42,14 @@ export default function NewDepartmentForm({ handleSave }: NewDepartmentFormProps
         <>
             <form onSubmit={handleSubmit}>
                 <FormControl required={true}>
-                    <InputLabel htmlFor='my-input'>{strings.name}</InputLabel>
+                    <InputLabel htmlFor='my-input'>{strings.general.name}</InputLabel>
                     <Input
                         inputRef={(input) => input && input.focus()}
                         id="my-input"
                         name="name"
                         aria-describedby="my-helper-text"
                     />
-                    <FormHelperText id="my-helper-text">{strings.departmentName}</FormHelperText>
+                    <FormHelperText id="my-helper-text">{constants.departmentName}</FormHelperText>
                 </FormControl>
 
                 <Box m={4}>
@@ -57,7 +58,7 @@ export default function NewDepartmentForm({ handleSave }: NewDepartmentFormProps
                         color="primary"
                         startIcon={<Save />}
                         type="submit" >
-                        {strings.save}
+                        {strings.general.save}
                     </Button>
                 </Box>
             </form>

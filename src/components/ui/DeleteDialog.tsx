@@ -8,6 +8,8 @@ import {
     DialogActions,
   } from "@material-ui/core";
 
+  import { strings } from '../../localization/localization';
+
 
 type DialogProps = {
     open: boolean,
@@ -24,24 +26,16 @@ export default function DeleteDialog({open, handleClose, handleDelete}: DialogPr
         aria-describedby="alert-dialog-description">
 
         <DialogTitle id="alert-dialog-title">
-          {"?Are you sure you want to delete this item"}
+          {strings.general.deleteConfirmation}
         </DialogTitle>
-
-        <DialogContent>
-
-          <DialogContentText id="alert-dialog-description">
-            ?Delete this item
-          </DialogContentText>
-
-        </DialogContent>
 
         <DialogActions>
 
           <Button onClick={handleClose} color="primary">
-            Cancel
+            {strings.general.cancel}
           </Button>
           <Button onClick={handleDelete} color="primary" autoFocus>
-            Delete
+            {strings.general.delete}
           </Button>
         </DialogActions>
         

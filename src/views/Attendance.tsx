@@ -15,7 +15,7 @@ import AttendanceTable from '../components/attendance/AttendanceTable'
 // HTTP Requests
 import { GetEmployees, GetAttendance } from '../queries/Employees';
 
-import { strings } from '../localization';
+import { strings } from '../localization/localization';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Attendance() {
     const classes = useStyles();
+    const constants = strings.attendance;
 
     const [selected, setSelected] = useState<any>({})
     const [selectedMonth, setSelectedMonth] = useState<any>({})
@@ -60,7 +61,7 @@ export default function Attendance() {
                 <div className={classes.paper}>
 
                     {/* Page Title */}
-                    <Typography variant="h4" align="center" className={classes.title}>{strings.tableTitle}</Typography>
+                    <Typography variant="h4" align="center" className={classes.title}>{constants.tableTitle}</Typography>
 
                     {/* Select Employee Dropdown Menu */}
                     <EmployeesMenu employees={employees} selectedEmployee={getEmployeeData} />

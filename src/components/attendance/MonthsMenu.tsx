@@ -8,7 +8,7 @@ import {
    
 } from '@material-ui/core';
 
-import { strings } from '../../localization';
+import { strings } from '../../localization/localization';
 
 const useStyles = makeStyles(theme => ({
     employeeSelect: {
@@ -38,6 +38,7 @@ const months = [
 
 export default function MonthsMenu(props: any) {
     const classes = useStyles();
+    const constants = strings.attendance;
 
     // Send the selected employee's ID to the parent component
     const onInputChange = (id: number, name: string) => {
@@ -53,13 +54,13 @@ export default function MonthsMenu(props: any) {
 
     return (
             <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="employee">{strings.monthMenu}</InputLabel>
+                <InputLabel id="employee">{constants.monthMenu}</InputLabel>
                 <Select
                     className={classes.employeeSelect}
                     labelId="employee"
                     id="demo-simple-select-outlined"
                     defaultValue={currentMonth}
-                    label={strings.monthMenu}>
+                    label={constants.monthMenu}>
                     <MenuItem value={0}>
                         <em>None</em>
                     </MenuItem>

@@ -10,7 +10,7 @@ import {
 // Styles
 import Styles from './styles';
 
-import { strings } from '../../localization';
+import { strings } from '../../localization/localization';
 
 interface AddEmployeeFormProps {
     sendDataToParent: (data: object) => void,
@@ -49,7 +49,7 @@ export default function AddEmployeeForm(props: AddEmployeeFormProps) {
             <div className={classes.paper}>
 
                 <Typography component="h1" variant="h5">
-                    {strings.addEmployee}
+                    {strings.employees.addEmployee}
                 </Typography>
 
                 {/* Arabic Name Field */}
@@ -92,7 +92,7 @@ export default function AddEmployeeForm(props: AddEmployeeFormProps) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}>
-                        {strings.add}
+                        {strings.general.add}
                     </Button>
 
                 </form>

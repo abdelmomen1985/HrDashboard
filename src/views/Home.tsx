@@ -12,7 +12,7 @@ import DepartmentSvg from "../assets/departments.svg";
 import TypesSvg from '../assets/agenda.svg'
 
 // Localized Strings
-import { strings } from "../localization";
+import { strings } from "../localization/localization";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Home() {
   const classes = useStyles();
+  const constants = strings.main;
 
   return (
     <div className={classes.root}>
@@ -32,7 +33,7 @@ export default function Home() {
           <DashboardPaper
             svg={BranchesSVG}
             to={"branches"}
-            text={strings.branches}
+            text={constants.branches}
           />
         </Grid>
 
@@ -40,7 +41,7 @@ export default function Home() {
           <DashboardPaper
             svg={DepartmentSvg}
             to={"departments"}
-            text={strings.departments}
+            text={constants.departments}
           />
         </Grid>
 
@@ -48,21 +49,21 @@ export default function Home() {
           <DashboardPaper
             svg={EmployeesSVG}
             to={"employees"}
-            text={strings.employees}
+            text={constants.employees}
           />
         </Grid>
         <Grid item xs={6} sm={3}>
           <DashboardPaper
             svg={InoutSVG}
             to={"/attendance"}
-            text={strings.attendance}
+            text={constants.attendance}
           />
         </Grid>
         <Grid item xs={6} sm={3}>
           <DashboardPaper
             svg={VacationsSvg}
             to={"/requests"}
-            text={strings.employeeRequests}
+            text={constants.employeeRequests}
           />
         </Grid>
 
@@ -70,7 +71,7 @@ export default function Home() {
           <DashboardPaper
             svg={TypesSvg}
             to={"/requests/types"}
-            text={strings.requestTypes}
+            text={constants.requestTypes}
           />
         </Grid>
 

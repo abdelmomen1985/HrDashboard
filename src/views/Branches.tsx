@@ -18,9 +18,10 @@ import NewBranchForm from '../components/branches/NewBranchForm';
 import EditBranchFrom from '../components/branches/EditBranchForm'
 
 // Localized Strings
-import { strings } from '../localization';
+import { strings } from '../localization/localization';
 
 export default function Branches() {
+  const constants = strings.branches;
 
   // Component State
   const [createModal, openCreateModal] = useState(false);
@@ -91,16 +92,16 @@ export default function Branches() {
           variant="contained"
           color="primary"
           onClick={() => openCreateModal(true)}>
-          {strings.addBranch}
+          {constants.addBranch}
         </Button>
 
         {/* Create Branch Modal */}
-        <Modal title={strings.addBranch} open={createModal} handleClose={() => { openCreateModal(false); refetch() }}>
+        <Modal title={constants.addBranch} open={createModal} handleClose={() => { openCreateModal(false); refetch() }}>
           <NewBranchForm handleSave={() => { openCreateModal(false); refetch() }} />
         </Modal>
 
         {/* Edit Branch Modal */}
-        <Modal title={strings.editBranch} open={editModal} handleClose={() => { openEditModal(false); refetch() }}>
+        <Modal title={constants.editBranch} open={editModal} handleClose={() => { openEditModal(false); refetch() }}>
           <EditBranchFrom handleSave={() => { openEditModal(false); refetch() }} branch={selectedBranch} />
         </Modal>
 

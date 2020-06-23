@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import App from "./setup/App";
+import App from "./App";
 
 const ACTION_TYPES = {
   CHANGE_NOTEBOOK: "CHANGE_NOTEBOOK",

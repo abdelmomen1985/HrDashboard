@@ -8,7 +8,7 @@ import {
 
 import { GetTypes } from '../queries/RequestTypes';
 
-import { strings } from '../localization';
+import { strings } from '../localization/localization';
 
 // UI Components
 import NewTypeForm from '../components/requests-types/NewTypeForm';
@@ -22,6 +22,8 @@ export default function Types() {
     const [editModal, openEditModal] = useState(false);
     const [deleteDialog, openDeleteDialog] = useState(false);
     const [selectedType, setSelectedType] = useState({} as any);
+
+    const constants = strings.requestTypes;
 
     // HTTP Requests
     const { data: types, status: getStatus, error: getError, refetch } = GetTypes();
@@ -43,8 +45,6 @@ export default function Types() {
 
     return (
         <Box component='div' m={2}>
-            {/* ADD MUTATION LINEAR PROGRES HERE */}
-
             {/* Types List */}
             <List>
                 {/* Response Iteration */}
@@ -57,16 +57,16 @@ export default function Types() {
 
             {/* New Type Button */}
             <Button variant="contained" color="primary" onClick={() => openCreateModal(true)}>
-                {strings.addType}
+                {constants.addType}
             </Button>
 
             {/* Add Type Modal */}
-            <Modal title={strings.addType} open={createModal} handleClose={() => {openCreateModal(false); refetch();}}> 
+            <Modal title={constants.addType} open={createModal} handleClose={() => {openCreateModal(false); refetch();}}> 
               <NewTypeForm handleSave={() => {openCreateModal(false); refetch()}} />
             </Modal>
 
             {/* Edit Type Modal */}
-            <Modal title={strings.editType} open={editModal} handleClose={() => {openEditModal(false); refetch();}}>
+            <Modal title={constants.editType} open={editModal} handleClose={() => {openEditModal(false); refetch();}}>
                 <EditTypeForm handleSave={() => {openEditModal(false); refetch()}} type={selectedType} />
             </Modal>
 

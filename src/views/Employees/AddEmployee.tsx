@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AddEmployeeForm from "../../components/employees/AddEmployeeForm";
-import { strings } from "../../localization";
+import { strings } from "../../localization/localization";
 
 // HTTP POST Action
 import { PostEmployee } from "../../queries/Employees";
@@ -8,6 +8,8 @@ import { PostEmployee } from "../../queries/Employees";
 export default function AddEmployee(props: any) {
   const [inputData, setInputData] = useState<any>({});
   const [error, setError] = useState<any>("");
+
+  const constants = strings.employees
 
   const [mutate, { status: status, error: httpError }] = PostEmployee();
 
@@ -21,7 +23,7 @@ export default function AddEmployee(props: any) {
     const enName = inputData.enName;
 
     // Input validation
-    if (!arName || !enName) return setError(strings.editEmployeeError);
+    if (!arName || !enName) return setError(constants.editEmployeeError);
     else setError("");
 
     /**

@@ -11,11 +11,12 @@ import { withRouter } from "react-router-dom";
 import HeaderStyles from "./styles/header-styles";
 
 // Localization
-import { setLanguage, strings } from "../../localization";
-import { AppCtxt } from "../../Context";
+import { setLanguage, strings } from "../../localization/localization";
+import { AppCtxt } from "../../setup/Context";
 
 // Navigation Bar Header
 function Header(props: any) {
+  const constants = strings.main;
   const classes = HeaderStyles();
   const pathname = props.location.pathname;
   const { currentLang } = React.useContext(AppCtxt);
@@ -33,15 +34,15 @@ function Header(props: any) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap style={{ flexGrow: 1 }}>
-          {pathname && pathname === "/branches" && strings.branches}
-          {pathname && pathname === "/departments" && strings.departments}
-          {pathname && pathname === "/employees" && strings.employees}
+          {pathname && pathname === "/branches" && constants.branches}
+          {pathname && pathname === "/departments" && constants.departments}
+          {pathname && pathname === "/employees" && constants.employees}
         </Typography>
 
-        <Button className={classes.button}>{strings.signIn}</Button>
+        <Button className={classes.button}>{constants.signIn}</Button>
         <Button className={classes.button} onClick={() => setLanguage()}>
-          {currentLang && currentLang === "en" && strings.ar}
-          {currentLang && currentLang === "ar" && strings.en}
+          {currentLang && currentLang === "en" && strings.general.ar}
+          {currentLang && currentLang === "ar" && strings.general.en}
         </Button>
       </Toolbar>
     </AppBar>

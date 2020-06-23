@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import { strings } from '../../localization';
+import { strings } from '../../localization/localization';
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function AttendanceTable(props: any) {
   const classes = useStyles();
   const [tableRows, setTableRows] = useState([] as any);
-  const tableStrings = strings.table;
+  const tableStrings = strings.attendance.table;
 
   useEffect(() => {
     const date = new Date();

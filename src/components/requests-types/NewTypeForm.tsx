@@ -17,7 +17,7 @@ import { Save } from "@material-ui/icons";
 
 import { PostType } from '../../queries/RequestTypes';
 import { GetDepartments } from '../../queries/Departments';
-import { strings } from '../../localization';
+import { strings } from '../../localization/localization';
 
 interface NewTypeFormProps {
     handleSave: () => void;
@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function NewTypeForm({ handleSave }: NewTypeFormProps) {
     const [error, setError] = useState<any>();
+    const constants = strings.requestTypes;
 
     const currentLanguage = localStorage.getItem('lang');
     const classes = useStyles();
@@ -62,7 +63,7 @@ export default function NewTypeForm({ handleSave }: NewTypeFormProps) {
             const depId = department.current && department.current.value;
 
             // Handle no department selection error
-            if (!depId || depId === "0") return setError(strings.departmentError);
+            if (!depId || depId === "0") return setError(constants.departmentError);
             else setError(null)
 
             // Request payload
@@ -101,7 +102,7 @@ export default function NewTypeForm({ handleSave }: NewTypeFormProps) {
                     name="name"
                     aria-describedby="my-helper-text"
                 />
-                <FormHelperText id="my-helper-text">{strings.typeNameEn}</FormHelperText>
+                <FormHelperText id="my-helper-text">{constants.typeNameEn}</FormHelperText>
 
                 <br />
 
@@ -117,7 +118,7 @@ export default function NewTypeForm({ handleSave }: NewTypeFormProps) {
                     name="name"
                     aria-describedby="my-helper-text"
                 />
-                <FormHelperText id="my-helper-text">{strings.typeNameAr}</FormHelperText>
+                <FormHelperText id="my-helper-text">{constants.typeNameAr}</FormHelperText>
 
                 <br />
 
@@ -135,7 +136,7 @@ export default function NewTypeForm({ handleSave }: NewTypeFormProps) {
                     name="name"
                     aria-describedby="my-helper-text"
                 />
-                <FormHelperText id="my-helper-text">{strings.typeDescriptionEn}</FormHelperText>
+                <FormHelperText id="my-helper-text">{constants.typeDescriptionEn}</FormHelperText>
                 <br />
 
                 {/* Arabic Description Form */}
@@ -152,19 +153,19 @@ export default function NewTypeForm({ handleSave }: NewTypeFormProps) {
                     name="name"
                     aria-describedby="my-helper-text"
                 />
-                <FormHelperText id="my-helper-text">{strings.typeDescrptionAr}</FormHelperText>
+                <FormHelperText id="my-helper-text">{constants.typeDescrptionAr}</FormHelperText>
 
                 <br />
 
                 {/* Department Select */}
                 <FormControl variant="outlined" required={true} className={classes.formControl}>
-                    <InputLabel id="department">{strings.departmentName}</InputLabel>
+                    <InputLabel id="department">{strings.departments.departmentName}</InputLabel>
                     <Select
                         className={classes.field}
                         labelId="department"
                         defaultValue={0}
                         inputRef={department}
-                        label={strings.departmentName}>
+                        label={strings.departments.departmentName}>
                         <MenuItem value={0}> <em>None</em>  </MenuItem>
                         {departments.map((department: any, index: number) => {
                             const name = currentLanguage === 'en' && department.en_name ? department.en_name : department.ar_name
@@ -186,7 +187,7 @@ export default function NewTypeForm({ handleSave }: NewTypeFormProps) {
                         color="primary"
                         startIcon={<Save />}
                         type="submit" >
-                        {strings.save}
+                        {strings.general.save}
                     </Button>
                 </Box>
             </form>

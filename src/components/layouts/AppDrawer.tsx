@@ -22,7 +22,7 @@ import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 import DrawerStyles from "./styles/drawer-styles";
 
 // Localized Strings
-import { strings } from "../../localization";
+import { strings } from "../../localization/localization";
 
 interface DrawerItemProps {
   children: React.ReactNode;
@@ -33,6 +33,7 @@ interface DrawerItemProps {
 
 const DrawerItem = (props: DrawerItemProps) => {
   const classes = DrawerStyles();
+ 
 
   return (
     <MenuItem
@@ -52,47 +53,49 @@ const DrawerItem = (props: DrawerItemProps) => {
 
 function AppDrawer({ location: { pathname } }: RouteComponentProps) {
   const classes = DrawerStyles();
+  const constants = strings.main;
+  
   return (
     <div>
       <div className={classes.toolbar} />
       <Divider />
       <MenuList>
 
-        <DrawerItem link={"/"} title={strings.home} pathname={pathname}>
+        <DrawerItem link={"/"} title={constants.home} pathname={pathname}>
           <Home />
         </DrawerItem>
 
         <DrawerItem
           link={"/branches"}
-          title={strings.branches}
+          title={constants.branches}
           pathname={pathname}>
           <LocationOn />
         </DrawerItem>
 
         <DrawerItem
           link={"/departments"}
-          title={strings.departments}
+          title={constants.departments}
           pathname={pathname}>
           <Department />
         </DrawerItem>
 
         <DrawerItem
           link={"/employees"}
-          title={strings.employees}
+          title={constants.employees}
           pathname={pathname}>
           <Person />
         </DrawerItem>
 
         <DrawerItem
           link={"/attendance"}
-          title={strings.attendance}
+          title={constants.attendance}
           pathname={pathname}>
           <MeetingRoom />
         </DrawerItem>
 
         <DrawerItem
           link={"/requests"}
-          title={strings.employeeRequests}
+          title={constants.employeeRequests}
           pathname={pathname}>
           <Inbox />
         </DrawerItem>
@@ -100,7 +103,7 @@ function AppDrawer({ location: { pathname } }: RouteComponentProps) {
         
         <DrawerItem
           link={"/requests/types"}
-          title={strings.requestTypes}
+          title={constants.requestTypes}
           pathname={pathname}>
           <MergeType />
         </DrawerItem>

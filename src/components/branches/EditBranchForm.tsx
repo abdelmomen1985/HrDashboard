@@ -14,7 +14,7 @@ import LocateSVG from "../../assets/location_searching.svg";
 
 import { EditBranch } from '../../queries/Branches';
 
-import { strings } from '../../localization';
+import { strings } from '../../localization/localization';
 
 interface EditBranchFormProps {
   handleSave: () => void,
@@ -27,6 +27,7 @@ interface EditBranchFormProps {
 }
 
 export default function EditBranchForm({ handleSave, branch }: EditBranchFormProps) {
+  const constants = strings.branches;
 
   const currentPosition = branch.latitude ? new LatLng(branch.latitude, branch.longitude) : new LatLng(30.05576, 31.357623)
 
@@ -83,7 +84,7 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
     <>
       <form onSubmit={handleSubmit}>
         <FormControl required={true}>
-          <InputLabel htmlFor="my-input">{strings.name}</InputLabel>
+          <InputLabel htmlFor="my-input">{strings.general.name}</InputLabel>
           <Input
             inputRef={(input) => input && input.focus()}
             defaultValue={branch.ar_name}
@@ -91,7 +92,7 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
             name="name"
             aria-describedby="my-helper-text"
           />
-          <FormHelperText id="my-helper-text">{strings.branchName}</FormHelperText>
+          <FormHelperText id="my-helper-text">{constants.branchName}</FormHelperText>
         </FormControl>
         <div>
           <Map
@@ -125,7 +126,7 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
             startIcon={<Save />}
             type="submit"
           >
-            {strings.save}
+            {strings.general.save}
           </Button>
         </Box>
       </form>

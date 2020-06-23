@@ -12,11 +12,13 @@ import ListItem from '../../components/ui/ListItem';
 import DeleteDialog from '../../components/ui/DeleteDialog';
 
 // Localized Strings
-import { strings } from '../../localization';
+import { strings } from '../../localization/localization';
 
 export default function ListEmployees(props: any) {
   const [deleteDialog, openDeleteDialog] = useState(false);
-  const [selectedEmployee, setselectedEmployee] = useState<any>({})
+  const [selectedEmployee, setselectedEmployee] = useState<any>({});
+
+  const constants = strings.employees;
 
   // HTTP Requests
   const { status, data, error, refetch } = GetEmployees();
@@ -63,7 +65,7 @@ export default function ListEmployees(props: any) {
 
         {/* New Employee Button */}
         <Button variant="contained" color="primary" onClick={() => props.history.push('/add-employee')}>
-          {strings.addEmployee}
+          {constants.addEmployee}
         </Button>
 
         {/* Delete Employee Dialog */}

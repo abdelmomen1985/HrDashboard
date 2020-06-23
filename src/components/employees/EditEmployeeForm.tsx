@@ -1,4 +1,4 @@
-import React, { useRef, SyntheticEvent } from 'react';
+import React, { useRef, SyntheticEvent, useContext } from 'react';
 import {
     Button,
     CssBaseline,
@@ -10,6 +10,9 @@ import {
 // Styles
 import Styles from './styles';
 
+import { strings } from '../../localization/localization';
+import { AppCtxt } from "../../setup/Context";
+
 interface EditEmployeeFormProps {
     sendDataToParent: (data: object) => void,
     onSubmit: () => void,
@@ -20,6 +23,7 @@ interface EditEmployeeFormProps {
 export default function EditEmployeeForm(props: EditEmployeeFormProps) {
     const classes = Styles();
     const employee = props.employee;
+    const { currentLang } = useContext(AppCtxt);
 
     // Input References
     const arNameInput = useRef<HTMLInputElement>(null);
@@ -49,7 +53,7 @@ export default function EditEmployeeForm(props: EditEmployeeFormProps) {
             <div className={classes.paper}>
 
                 <Typography component="h1" variant="h5">
-                    {employee.ar_name}
+                    {currentLang === 'en' ? employee.en_name : employee.ar_name}
                 </Typography>
 
                 {/* Arabic Name Field */}
@@ -94,7 +98,7 @@ export default function EditEmployeeForm(props: EditEmployeeFormProps) {
                         variant="contained"
                         color="primary"
                         className={classes.submit}>
-                        اضافة
+                        {strings.general.add}
           </Button>
 
                 </form>

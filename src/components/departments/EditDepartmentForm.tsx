@@ -11,7 +11,7 @@ import { Save } from "@material-ui/icons";
 
 import { EditDepartment } from '../../queries/Departments';
 
-import { strings } from '../../localization';
+import { strings } from '../../localization/localization';
 
 interface EditDepartmentFormProps {
     handleSave: () => void,
@@ -22,6 +22,7 @@ interface EditDepartmentFormProps {
 };
 
 export default function EditDepartmentForm({ handleSave, department }: EditDepartmentFormProps) {
+    const constants = strings.departments;
 
     // HTTP Request
     const [mutate, {status: status, error: error}] = EditDepartment();
@@ -50,7 +51,7 @@ export default function EditDepartmentForm({ handleSave, department }: EditDepar
         <>
             <form onSubmit={handleSubmit}>
                 <FormControl required={true}>
-                    <InputLabel htmlFor='my-input'>{strings.name}</InputLabel>
+                    <InputLabel htmlFor='my-input'>{strings.general.name}</InputLabel>
                     <Input
                         inputRef={(input) => input && input.focus()}
                         defaultValue={department.ar_name}
@@ -58,7 +59,7 @@ export default function EditDepartmentForm({ handleSave, department }: EditDepar
                         name="name"
                         aria-describedby="my-helper-text"
                     />
-                    <FormHelperText id="my-helper-text">{strings.departmentName}</FormHelperText>
+                    <FormHelperText id="my-helper-text">{constants.departmentName}</FormHelperText>
                 </FormControl>
 
                 <Box m={4}>
@@ -67,7 +68,7 @@ export default function EditDepartmentForm({ handleSave, department }: EditDepar
                         color="primary"
                         startIcon={<Save />}
                         type="submit" >
-                        {strings.save}
+                        {strings.general.save}
                     </Button>
                 </Box>
             </form>
