@@ -18,10 +18,11 @@ import { Save } from "@material-ui/icons";
 import { EditType } from '../../queries/RequestTypes';
 import { GetDepartments } from '../../queries/Departments';
 import { strings } from '../../localization/localization';
+import { RequestType } from "../../types/types";
 
 interface EditTypeFormProps {
     handleSave: () => void,
-    type: any
+    type: RequestType
 };
 
 const useStyles = makeStyles(theme => ({
@@ -90,9 +91,9 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
                     variant="outlined"
                     label="Name in English"
                     name="enName"
-                    aria-describedby="my-helper-text"
+                    aria-describedby="ar-name-helper"
                 />
-                <FormHelperText id="my-helper-text">{constants.typeNameEn}</FormHelperText>
+                <FormHelperText id="ar-name-helper">{constants.typeNameEn}</FormHelperText>
 
                 <br />
 
@@ -105,9 +106,9 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
                         variant="outlined"
                         label='الاسم باللغة العربية'
                         name="arName"
-                        aria-describedby="my-helper-text"
+                        aria-describedby="en-name-helper"
                     />
-                    <FormHelperText id="my-helper-text">{constants.typeNameAr}</FormHelperText>
+                    <FormHelperText id="en-name-helper">{constants.typeNameAr}</FormHelperText>
 
                 <br /> 
 

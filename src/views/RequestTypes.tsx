@@ -10,7 +10,7 @@ import NewTypeForm from "../components/requests-types/NewTypeForm";
 import EditTypeForm from "../components/requests-types/EditTypeForm";
 import DeleteDialog from "../components/ui/DeleteDialog";
 import Modal from "../components/ui/Modal";
-import ListItem from "../components/ui/ListItemComponent";
+import ListItemComponent from "../components/ui/ListItemComponent";
 
 export default function Types() {
   const [createModal, openCreateModal] = useState(false);
@@ -58,7 +58,7 @@ export default function Types() {
         {/* Response Iteration */}
         {types &&
           types.map((type: any, index: any) => (
-            <ListItem
+            <ListItemComponent
               item={type}
               key={index}
               onEditClick={() => onEditClick(type)}

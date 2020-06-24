@@ -12,7 +12,7 @@ import { AppCtxt } from "../setup/Context";
 // UI Components
 import RequestInfo from "../components/emp-requests/RequestInfo";
 import Modal from "../components/ui/Modal";
-import ListItem from "../components/ui/ListItemComponent";
+import ListItemComponent from "../components/ui/ListItemComponent";
 import { GetEmpRequests } from "../queries/EmpRequests";
 import { EmpRequest } from "../types/types";
 
@@ -37,7 +37,7 @@ export default function Requests() {
       <List>
         {requests &&
           requests.map((request: EmpRequest, index: number) => (
-            <ListItem
+            <ListItemComponent
               onClick={() => onRequestClick(request)}
               item={request}
               key={index}
@@ -68,7 +68,7 @@ export default function Requests() {
                   }
                 />
               </Grid>
-            </ListItem>
+            </ListItemComponent>
           ))}
       </List>
 

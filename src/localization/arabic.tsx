@@ -30,7 +30,9 @@ const branches = {
 const departments = {
     addDepartment: "اضافة قسم جديد",
     editDepartment: "تعديل القسم",
-    departmentName: "اسم القسم",
+    departmentNameAr: "اسم القسم باللغة العربية",
+    departmentNameEn: 'اسم القسم باللغة الانجليزية',
+    departmentName: "اسم القسم"
 };
 
 const employees = {

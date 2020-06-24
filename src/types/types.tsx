@@ -25,6 +25,9 @@ export type RequestType = {
   id: string;
   ar_name: string;
   en_name: string;
+  en_description: string,
+  ar_description: string,
+  to_dep_id: string
 };
 
 export type EmpRequest = {

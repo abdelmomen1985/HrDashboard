@@ -30,7 +30,9 @@ const branches = {
 const departments = {
     addDepartment: "Add Department",
     editDepartment: "Edit Department",
-    departmentName: "Department Name",
+    departmentNameAr: "Department Name in Arabic",
+    departmentNameEn: "Department Name in English",
+    departmentName: "Department Name"
 };
 
 const employees = {

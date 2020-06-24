@@ -6,12 +6,13 @@ import {
     FormHelperText,
     Button,
     Box,
+    TextField,
 } from "@material-ui/core";
 import { Save } from "@material-ui/icons";
 import Axios from "axios";
 
 import { PostDepartment } from '../../queries/Departments';
-import { strings } from '../../localization/localization'; 
+import { strings } from '../../localization/localization';
 
 interface NewDepartmentFormProps {
     handleSave: () => void;
@@ -21,14 +22,14 @@ export default function NewDepartmentForm({ handleSave }: NewDepartmentFormProps
     const constants = strings.departments;
 
     // HTTP Request
-    const [mutate, {status: status, error: error}] = PostDepartment();
+    const [mutate, { status: status, error: error }] = PostDepartment();
 
     const handleSubmit = useCallback(
         async (e: SyntheticEvent) => {
             e.preventDefault();
 
-            const { name } = e.target as any;
-            const payload = { ar_name: name.value };
+            const { arName, enName } = e.target as any;
+            const payload = { ar_name: arName.value, en_name: enName.value };
 
             await mutate(payload)
 
@@ -40,27 +41,42 @@ export default function NewDepartmentForm({ handleSave }: NewDepartmentFormProps
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <FormControl required={true}>
-                    <InputLabel htmlFor='my-input'>{strings.general.name}</InputLabel>
-                    <Input
-                        inputRef={(input) => input && input.focus()}
-                        id="my-input"
-                        name="name"
-                        aria-describedby="my-helper-text"
-                    />
-                    <FormHelperText id="my-helper-text">{constants.departmentName}</FormHelperText>
-                </FormControl>
+            <form onSubmit={handleSubmit} style={{width: 300}}>
 
-                <Box m={4}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        startIcon={<Save />}
-                        type="submit" >
-                        {strings.general.save}
-                    </Button>
-                </Box>
+                {/* English Name Input */}
+                <TextField
+                    fullWidth
+                    required
+                    inputRef={(input) => input && input.focus()}
+                    variant='outlined'
+                    name="enName"
+                    label={constants.departmentNameEn}
+                />
+
+                <br/>
+                <br />
+                
+                {/* Arabic Name Input */}
+                <TextField
+                   fullWidth
+                    required
+                    inputRef={(input) => input && input.focus()}
+                    variant='outlined'
+                    name="arName"
+                    label={constants.departmentNameAr}
+                />
+
+                <br />
+                <br />
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<Save />}
+                    type="submit" >
+                    {strings.general.save}
+                </Button>
+
             </form>
         </>
     )
