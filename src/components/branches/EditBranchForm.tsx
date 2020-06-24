@@ -12,30 +12,31 @@ import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import { LeafletMouseEvent, LocationEvent, LatLng } from "leaflet";
 import LocateSVG from "../../assets/location_searching.svg";
 
-import { EditBranch } from '../../queries/Branches';
+import { EditBranch } from "../../queries/Branches";
 
-import { strings } from '../../localization/localization';
+import { strings } from "../../localization/localization";
+import { Branch } from "../../types/types";
 
 interface EditBranchFormProps {
-  handleSave: () => void,
-  branch: {
-    id: string,
-    ar_name: string,
-    latitude: number,
-    longitude: number
-  }
+  handleSave: () => void;
+  branch: Branch;
 }
 
-export default function EditBranchForm({ handleSave, branch }: EditBranchFormProps) {
+export default function EditBranchForm({
+  handleSave,
+  branch,
+}: EditBranchFormProps) {
   const constants = strings.branches;
 
-  const currentPosition = branch.latitude ? new LatLng(branch.latitude, branch.longitude) : new LatLng(30.05576, 31.357623)
+  const currentPosition = branch.latitude
+    ? new LatLng(branch.latitude, branch.longitude)
+    : new LatLng(30.05576, 31.357623);
 
   const [position, setPosition] = useState(currentPosition);
   const mapRef = React.createRef<Map>();
 
   // HTTP Request
-  const [mutate, {status: status, error: error}] = EditBranch();
+  const [mutate, { status , error }] = EditBranch();
 
   const handleSubmit = useCallback(
     async (e: SyntheticEvent) => {
@@ -43,24 +44,20 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
       const { name } = e.target as any;
       const branchName = name.value;
 
-      const payload =   {
-            company_id: 1,
-            ar_name: branchName,
-            latitude: position.lat,
-            longitude: position.lng,
-          };
-
       const variables = {
-        payload: payload,
-        id: branch.id
-      }
+        payload: {
+          company_id: 1,
+          ar_name: branchName,
+          latitude: position.lat,
+          longitude: position.lng,
+        },
+        id: branch.id,
+      };
 
       await mutate(variables);
 
-      if(status === "error")
-      alert(error)
+      if (status === "error") alert(error);
       else handleSave();
-     
     },
     [handleSave, position]
   );
@@ -92,7 +89,9 @@ export default function EditBranchForm({ handleSave, branch }: EditBranchFormPro
             name="name"
             aria-describedby="my-helper-text"
           />
-          <FormHelperText id="my-helper-text">{constants.branchName}</FormHelperText>
+          <FormHelperText id="my-helper-text">
+            {constants.branchName}
+          </FormHelperText>
         </FormControl>
         <div>
           <Map

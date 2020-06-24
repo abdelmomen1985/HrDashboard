@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import {
-  List,
-  Box,
-  Button,
-  LinearProgress
-} from "@material-ui/core";
+import { List, Box, Button, LinearProgress } from "@material-ui/core";
 import { GetEmployees, DeleteEmployee } from "../../queries/Employees";
 
 // UI Components
-import ListItem from '../../components/ui/ListItem';
-import DeleteDialog from '../../components/ui/DeleteDialog';
+import ListItemComponent from "../../components/ui/ListItemComponent";
+import DeleteDialog from "../../components/ui/DeleteDialog";
 
 // Localized Strings
-import { strings } from '../../localization/localization';
+import { strings } from "../../localization/localization";
 
 export default function ListEmployees(props: any) {
   const [deleteDialog, openDeleteDialog] = useState(false);
@@ -22,7 +17,7 @@ export default function ListEmployees(props: any) {
 
   // HTTP Requests
   const { status, data, error, refetch } = GetEmployees();
-  const [mutate, {status: mutationStatus}] = DeleteEmployee();
+  const [mutate, { status: mutationStatus }] = DeleteEmployee();
 
   // Redirect to the employee edit page on edit button click
   const onEditClick = (id: number) => {
@@ -42,35 +37,45 @@ export default function ListEmployees(props: any) {
       await refetch();
     });
 
-    openDeleteDialog(false)
-  }
+    openDeleteDialog(false);
+  };
 
   if (status === "loading") return <LinearProgress color="secondary" />;
   if (status === "error") return <div>Error {error} ...</div>;
 
   return (
     <>
-      {mutationStatus === 'loading' && <LinearProgress color="secondary" />}
+      {mutationStatus === "loading" && <LinearProgress color="secondary" />}
       <Box component="div" m={2}>
         <List>
           {data &&
             data.map((employee: any, index: any) => (
-              <ListItem item={employee} key={index}
-              onEditClick={() => onEditClick(employee.id)} 
-              onDeleteClick={() => onDeleteClick(employee)}/>
+              <ListItemComponent
+                item={employee}
+                key={index}
+                onEditClick={() => onEditClick(employee.id)}
+                onDeleteClick={() => onDeleteClick(employee)}
+              />
             ))}
         </List>
 
-        <br/>
+        <br />
 
         {/* New Employee Button */}
-        <Button variant="contained" color="primary" onClick={() => props.history.push('/add-employee')}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => props.history.push("/add-employee")}
+        >
           {constants.addEmployee}
         </Button>
 
         {/* Delete Employee Dialog */}
-        <DeleteDialog open={deleteDialog} handleClose={() => openDeleteDialog(false)} handleDelete={handleDelete} />
-
+        <DeleteDialog
+          open={deleteDialog}
+          handleClose={() => openDeleteDialog(false)}
+          handleDelete={handleDelete}
+        />
       </Box>
     </>
   );
