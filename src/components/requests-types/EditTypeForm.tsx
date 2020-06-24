@@ -1,4 +1,4 @@
-import React, { useCallback, SyntheticEvent, useRef, useState } from "react";
+import React, { useCallback, SyntheticEvent, useState } from "react";
 import {
     FormControl,
     InputLabel,
@@ -40,13 +40,6 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
     const currentLanguage = localStorage.getItem('lang');
     const classes = useStyles();
 
-    const arName = useRef<HTMLInputElement>(null);
-    const enName = useRef<HTMLInputElement>(null);
-    const arDescription = useRef<HTMLInputElement>(null);
-    const enDescription = useRef<HTMLInputElement>(null);
-    const department = useRef<HTMLInputElement>(null);
-
-
     // HTTP Requests
     const { status: getStatus, data: departments, error: getError } = GetDepartments();
     const [mutate, { status: mutationStatus, error: mutationError }] = EditType();
@@ -56,25 +49,21 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
         async (e: SyntheticEvent) => {
             e.preventDefault();
 
-            // Input Values
-            const arTypeName = arName.current && arName.current.value;
-            const enTypeName = enName.current && enName.current.value;
-            const arTypeDescription = arDescription.current && arDescription.current.value;
-            const enTypeDescription = enDescription.current && enDescription.current.value;
-            const depId = department.current && department.current.value;
+            const {arName, enName, arDescription, enDescription, department } = e.target as any;
 
             // Handle no department selection error
-            if (!depId || depId === "0") return setError(constants.departmentError);
+            if (!department.value || department.value === "0") return setError(constants.departmentError);
             else setError("")
 
-            // // Request payload
+            // Request payload
             const payload = {
-                ar_name: arTypeName,
-                en_name: enTypeName,
-                to_dep_id: depId,
-                ar_description: arTypeDescription,
-                en_description: enTypeDescription
+                ar_name: arName.value,
+                en_name: enName.value,
+                to_dep_id: department.value,
+                ar_description: arDescription.value,
+                en_description: enDescription.value
             };
+
             const typeId = type.id;
 
             await mutate({ payload: payload, id: typeId })
@@ -99,10 +88,8 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
                     className={classes.field}
                     defaultValue={type.en_name}
                     variant="outlined"
-                    inputRef={enName}
-                    id="my-input"
                     label="Name in English"
-                    name="name"
+                    name="enName"
                     aria-describedby="my-helper-text"
                 />
                 <FormHelperText id="my-helper-text">{constants.typeNameEn}</FormHelperText>
@@ -116,10 +103,8 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
                         defaultValue={type.ar_name}
                         className={classes.field}
                         variant="outlined"
-                        inputRef={arName}
-                        id="my-input"
                         label='الاسم باللغة العربية'
-                        name="name"
+                        name="arName"
                         aria-describedby="my-helper-text"
                     />
                     <FormHelperText id="my-helper-text">{constants.typeNameAr}</FormHelperText>
@@ -135,10 +120,8 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
                     rowsMax={6}
                     className={classes.field}
                     variant="outlined"
-                    inputRef={enDescription}
-                    id="my-input"
                     label='Description in English'
-                    name="name"
+                    name="enDescription"
                     aria-describedby="my-helper-text"
                 />
                 <FormHelperText id="my-helper-text">{constants.typeDescriptionEn}</FormHelperText>
@@ -153,10 +136,8 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
                     rowsMax={6}
                     className={classes.field}
                     variant="outlined"
-                    inputRef={arDescription}
-                    id="my-input"
                     label='الوصف باللغة العربية'
-                    name="name"
+                    name="arDescription"
                     aria-describedby="my-helper-text"
                 />
                 <FormHelperText id="my-helper-text">{constants.typeDescrptionAr}</FormHelperText>
@@ -172,7 +153,7 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
                         labelId="employee"
                         id="demo-simple-select-outlined"
                         defaultValue={type.to_dep_id}
-                        inputRef={department}
+                        name='department'
                         label={strings.departments.departmentName}>
                         {departments.map((department: any, index: number) => {
                             const name = currentLanguage === 'en' && department.en_name ? department.en_name : department.ar_name
