@@ -6,7 +6,7 @@ import {
     LinearProgress
 } from '@material-ui/core';
 
-import { GetTypes } from '../queries/RequestTypes';
+import { GetTypes, DeleteType } from '../queries/RequestTypes';
 
 import { strings } from '../localization/localization';
 
@@ -27,6 +27,7 @@ export default function Types() {
 
     // HTTP Requests
     const { data: types, status: getStatus, error: getError, refetch } = GetTypes();
+    const [mutate, {status: mutationStatus} ] =  DeleteType();
 
     const onDeleteClick = (type: any) => {
         setSelectedType(type);
@@ -38,7 +39,15 @@ export default function Types() {
         openEditModal(true);
     }
 
-    const handleDelete = async () => { }
+    const handleDelete = async () => {
+        console.log(selectedType)
+        mutate(selectedType.id).then(async () => {
+            setSelectedType({} as any);
+            await refetch();
+        })
+
+        openDeleteDialog(false);
+     }
 
 
     if(getStatus === 'loading') return <LinearProgress color="secondary" />
@@ -69,6 +78,9 @@ export default function Types() {
             <Modal title={constants.editType} open={editModal} handleClose={() => {openEditModal(false); refetch();}}>
                 <EditTypeForm handleSave={() => {openEditModal(false); refetch()}} type={selectedType} />
             </Modal>
+
+            {/* Delete Type Dialog */}
+            <DeleteDialog open={deleteDialog} handleClose={() => openDeleteDialog(false)} handleDelete={handleDelete} />
 
             
         </Box>

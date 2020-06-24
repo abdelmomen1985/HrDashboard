@@ -29,7 +29,7 @@ const branches = {
 
 const departments = {
     addDepartment: "Add Department",
-    editDepartment: "ُEdit Department",
+    editDepartment: "Edit Department",
     departmentName: "Department Name",
 };
 
@@ -61,6 +61,14 @@ const attendance = {
     monthMenu: "Month",
 }
 
+const requests = {
+    reply: 'Reply',
+    response: 'Response',
+    approve: 'Approve',
+    reject: 'Reject',
+    to: 'To'
+}
+
 const english = {
     general: general,
     main: main,
@@ -68,7 +76,8 @@ const english = {
     departments: departments,
     employees: employees,
     requestTypes: requestTypes,
-    attendance: attendance
+    attendance: attendance,
+    requests: requests
 
 }
 

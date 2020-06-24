@@ -18,7 +18,7 @@ const main = {
     attendance: "الحضور و الانصراف",
     employeeRequests: "طلبات الموظفين",
     signIn: "تسجيل الدخول",
-    requestTypes: "تصنيفات الطلبات",
+    requestTypes: "انواع الطلبات",
 }
 
 const branches = {
@@ -40,13 +40,21 @@ const employees = {
 }
 
 const requestTypes = {
-    addType: "أضافة تصنيف",
-    editType: "تعديل التصنيف",
-    typeNameAr: "اسم التصنيف بالعربية",
-    typeNameEn: "اسم التصنيف بالانجليزية",
+    addType: "أضافة نوع",
+    editType: "تعديل النوع",
+    typeNameAr: "اسم النوع بالعربية",
+    typeNameEn: "اسم النوع بالانجليزية",
     typeDescriptionEn: "الوصف بالانجليزية",
     typeDescrptionAr: "الوصف بالعربية",
     departmentError: 'برجاء ادخال القسم',
+}
+
+const requests = {
+    reply: 'جواب',
+    response: 'الرد',
+    approve: 'موافقة',
+    reject: 'رفض',
+    to: 'الى'
 }
 
 const attendance = {
@@ -67,7 +75,8 @@ const arabic = {
     departments: departments,
     employees: employees,
     requestTypes: requestTypes,
-    attendance: attendance
+    attendance: attendance,
+    requests: requests
 }
 
 export default arabic;

@@ -65,7 +65,7 @@ export default function Departments() {
             {/* Departments List */}
             <List>
                 {/* Response iteration */}
-                {data && data.map((department: any, index: any) => (
+                {data && data.map((department: any, index: number) => (
                     <ListItem item={department} key={index}
                         onEditClick={() => onEditClick(department)}
                         onDeleteClick={() => onDeleteClick(department)} />
@@ -87,7 +87,7 @@ export default function Departments() {
                 <EditDepartmentForm handleSave={() => { openEditModal(false); refetch() }} department={selectedDepartment} />
             </Modal>
 
-            {/* Delete Branch Dialog */}
+            {/* Delete Department Dialog */}
             <DeleteDialog open={deleteDialog} handleClose={() => openDeleteDialog(false)} handleDelete={handleDelete} />
         </Box>
     )

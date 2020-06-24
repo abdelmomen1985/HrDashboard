@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
-    const [error, setError] = useState<any>();
+    const [error, setError] = useState<string>();
     const constants = strings.requestTypes;
 
     const currentLanguage = localStorage.getItem('lang');
@@ -65,7 +65,7 @@ export default function EditTypeForm({ handleSave, type }: EditTypeFormProps) {
 
             // Handle no department selection error
             if (!depId || depId === "0") return setError(constants.departmentError);
-            else setError(null)
+            else setError("")
 
             // // Request payload
             const payload = {

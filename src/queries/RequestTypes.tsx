@@ -34,4 +34,12 @@ const EditType = () => {
     )
 }
 
-export { GetTypes, PostType, EditType };
+const DeleteType = () => {
+    return useMutation(
+        async (id: string) => {
+            return await Delete(`${url}/request_type/${id}`, {})
+        }
+    );
+};
+
+export { GetTypes, PostType, EditType, DeleteType };

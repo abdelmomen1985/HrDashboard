@@ -7,8 +7,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         justifyContent: "center",
         
-  
-
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
@@ -35,7 +33,7 @@ interface Modal {
     open: boolean;
     handleClose: (arg0: boolean) => void;
     children: React.ReactNode;
-    title: string
+    title?: string
 };
 
 export default function AddDepartmentModal(props: Modal) {

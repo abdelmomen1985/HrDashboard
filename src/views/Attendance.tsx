@@ -50,8 +50,6 @@ export default function Attendance() {
         setSelectedMonth({id, name});
     }
 
-    console.log(attendance)
-
     if (employeesStatus === 'loading') return <LinearProgress color="secondary" />
 
     return (

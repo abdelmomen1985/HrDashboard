@@ -77,7 +77,7 @@ export default function Branches() {
         {/* Branches List */}
         <List>
           {data &&
-            data.map((branch: any, index: any) => (
+            data.map((branch: any, index: number) => (
               <ListItem item={branch} key={index}
                 onEditClick={() => onEditClick(branch)}
                 onDeleteClick={() => onDeleteClick(branch)}>

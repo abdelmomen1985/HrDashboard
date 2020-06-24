@@ -34,9 +34,11 @@ function Header(props: any) {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap style={{ flexGrow: 1 }}>
-          {pathname && pathname === "/branches" && constants.branches}
-          {pathname && pathname === "/departments" && constants.departments}
-          {pathname && pathname === "/employees" && constants.employees}
+          {pathname === "/branches" && constants.branches}
+          {pathname === "/departments" && constants.departments}
+          {pathname === "/employees" && constants.employees}
+          {pathname === '/requests' && constants.employeeRequests}
+          {pathname === '/requests/types' && constants.requestTypes}
         </Typography>
 
         <Button className={classes.button}>{constants.signIn}</Button>
