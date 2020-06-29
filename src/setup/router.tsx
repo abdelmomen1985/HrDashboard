@@ -4,6 +4,8 @@ import MainLayout from "../components/layouts/MainLayout";
 
 // Components
 import Home from "../views/Home";
+import SignIn from '../views/Authentication/SignIn';
+import SignUp from '../views/Authentication/SignUp';
 import Employees from "../views/Employees/Employees";
 import Branches from "../views/Branches";
 import Departments from "../views/Departments";
@@ -19,6 +21,8 @@ export default function Routes() {
             <MainLayout>
                 <Switch>
                     <Route path="/" exact component={Home} />
+                    <Route path='/signin' component={SignIn} />
+                    <Route path='/signup' component={SignUp} />
                     <Route path="/branches" component={Branches} />
                     <Route path="/add-employee" component={AddEmployee} />
                     <Route path="/employees/edit/:id" component={EditEmployee} />

@@ -48,6 +48,7 @@ const requestTypes = {
     typeNameEn: "اسم النوع بالانجليزية",
     typeDescriptionEn: "الوصف بالانجليزية",
     typeDescrptionAr: "الوصف بالعربية",
+    typeInputError: "برجاء ملئ جميع الخانات",
     departmentError: 'برجاء ادخال القسم',
 }
 
@@ -70,6 +71,16 @@ const attendance = {
     monthMenu: "الشهر",
 }
 
+const auth = {
+    signin: 'تسجيل الدخول',
+    signup: 'تسجيل حساب جديد',
+    username: 'أسم المستخدم',
+    email: 'البريد الالكترونى',
+    password: 'كلمة المرور',
+    signInRedirect: 'لديك حساب آخر؟ تسجيل الدخول',
+    signUpRedirect: 'ليس لديك حساب؟ تسجيل حساب جديد'
+}
+
 const arabic = {
     general: general,
     main: main,
@@ -78,7 +89,8 @@ const arabic = {
     employees: employees,
     requestTypes: requestTypes,
     attendance: attendance,
-    requests: requests
+    requests: requests,
+    auth: auth
 }
 
 export default arabic;

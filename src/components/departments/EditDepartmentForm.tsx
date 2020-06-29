@@ -66,7 +66,6 @@ export default function EditDepartmentForm({ handleSave, department }: EditDepar
                 {/* Arabic Name Input */}
                 <TextField
                     required
-                    inputRef={(input) => input && input.focus()}
                     defaultValue={department.ar_name}
                     variant='outlined'
                     name="arName"

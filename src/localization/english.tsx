@@ -71,6 +71,16 @@ const requests = {
     to: 'To'
 }
 
+const auth = {
+    signin: 'Sign In',
+    signup: 'Sign Up',
+    username: "Username",
+    email: "Email Address",
+    password: "Password",
+    signInRedirect: "Already have an account? Sign In",
+    signUpRedirect: "Don't have an account? Sign Up"
+}
+
 const english = {
     general: general,
     main: main,
@@ -79,8 +89,8 @@ const english = {
     employees: employees,
     requestTypes: requestTypes,
     attendance: attendance,
-    requests: requests
-
+    requests: requests,
+    auth: auth,
 }
 
 export default english;

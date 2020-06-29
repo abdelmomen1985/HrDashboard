@@ -41,7 +41,7 @@ function Header(props: any) {
           {pathname === '/requests/types' && constants.requestTypes}
         </Typography>
 
-        <Button className={classes.button}>{constants.signIn}</Button>
+        <Button className={classes.button} onClick={() => props.history.push('/signin')}>{constants.signIn}</Button>
         <Button className={classes.button} onClick={() => setLanguage()}>
           {currentLang && currentLang === "en" && strings.general.ar}
           {currentLang && currentLang === "ar" && strings.general.en}

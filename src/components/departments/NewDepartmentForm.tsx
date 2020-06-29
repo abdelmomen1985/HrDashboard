@@ -9,7 +9,6 @@ import {
     TextField,
 } from "@material-ui/core";
 import { Save } from "@material-ui/icons";
-import Axios from "axios";
 
 import { PostDepartment } from '../../queries/Departments';
 import { strings } from '../../localization/localization';
@@ -60,7 +59,6 @@ export default function NewDepartmentForm({ handleSave }: NewDepartmentFormProps
                 <TextField
                    fullWidth
                     required
-                    inputRef={(input) => input && input.focus()}
                     variant='outlined'
                     name="arName"
                     label={constants.departmentNameAr}

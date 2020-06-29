@@ -7,6 +7,7 @@ import {
   MenuList,
   Typography,
 } from "@material-ui/core";
+
 import {
   Inbox,
   Person,
@@ -15,6 +16,7 @@ import {
   MeetingRoom,
   MergeType
 } from "@material-ui/icons";
+
 import Department from "@material-ui/icons/BusinessCenter";
 import { Link, withRouter, RouteComponentProps } from "react-router-dom";
 
