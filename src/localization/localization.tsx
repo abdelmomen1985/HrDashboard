@@ -1,6 +1,7 @@
 import LocalizedStrings from "react-localization";
 import arabic from './arabic';
 import english from './english';
+
 // Change the current language
 const setLanguage = () => {
   const currentLanguage = localStorage.getItem("lang");

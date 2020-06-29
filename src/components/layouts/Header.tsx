@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -12,16 +12,22 @@ import HeaderStyles from "./styles/header-styles";
 
 // Localization
 import { setLanguage, strings } from "../../localization/localization";
-import { AppCtxt } from "../../setup/Context";
+import { AppCtxt, CtxtProvider } from "../../setup/Context";
 
 // Navigation Bar Header
 function Header(props: any) {
   const constants = strings.main;
   const classes = HeaderStyles();
   const pathname = props.location.pathname;
-  const { currentLang } = React.useContext(AppCtxt);
+  const { currentLang, checkAuth, user } = React.useContext(AppCtxt);
 
+  // Check auth on route change
+  useEffect(() => {
+    checkAuth()
+  }, [props.location.pathname]);
+  
   return (
+
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar>
         <IconButton
@@ -41,10 +47,11 @@ function Header(props: any) {
           {pathname === '/requests/types' && constants.requestTypes}
         </Typography>
 
-        <Button className={classes.button} onClick={() => props.history.push('/signin')}>{constants.signIn}</Button>
+        {user ? <Button className={classes.button}>{user.name}</Button> :
+          <Button className={classes.button} onClick={() => props.history.push('/signin')}>{constants.signIn}</Button>
+        }
         <Button className={classes.button} onClick={() => setLanguage()}>
-          {currentLang && currentLang === "en" && strings.general.ar}
-          {currentLang && currentLang === "ar" && strings.general.en}
+          {currentLang && currentLang === "en" ? strings.general.ar : strings.general.en}
         </Button>
       </Toolbar>
     </AppBar>

@@ -38,6 +38,7 @@ const theme = createMuiTheme({
 
 function App() {
   document.body.style.direction = currentLanguage === "en" ? "ltr" : "rtl";
+  
   return (
     <div className="App">
       <StylesProvider jss={jss}>
